@@ -1,32 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
+import Onboarding from './component/Onboarding';
+import Camera from './component/Camera';
 
 function App() {
-  const [stream, setStream] = useState<MediaStream | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+    const [showOnboarding, setShowOnboarding] = useState(true);
 
-  const handleButtonClick = async () => {
-    try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: { exact: 'environment' } }
-      });
-      setStream(mediaStream);
-    } catch (error) {
-      console.error('Error accessing camera:', error);
-    }
-  };
+    const handleOnboardingComplete = () => {
+        setShowOnboarding(false);
+    };
 
-  useEffect(() => {
-    if (videoRef.current && stream) {
-      videoRef.current.srcObject = stream;
-    }
-  }, [stream]);
-
-  return (
-      <div className="App">
-        <button onClick={handleButtonClick}>Turn on Camera</button>
-        {stream && <video ref={videoRef} autoPlay playsInline />}
-      </div>
-  );
+    return (
+        <div className="App">
+            {showOnboarding ? (
+                <Onboarding onComplete={handleOnboardingComplete} />
+            ) : (
+                <Camera />
+            )}
+        </div>
+    );
 }
 
 export default App;
