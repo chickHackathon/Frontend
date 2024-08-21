@@ -6,7 +6,9 @@ function App() {
 
   const handleButtonClick = async () => {
     try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { exact: 'environment' } }
+      });
       setStream(mediaStream);
     } catch (error) {
       console.error('Error accessing camera:', error);
