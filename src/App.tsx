@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
-import Onboarding from './component/Onboarding';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Camera from './component/Camera';
+import Onboarding from './component/Onboarding';
+import Tabs from './component/Tabs';
 
-function App() {
-    const [showOnboarding, setShowOnboarding] = useState(true);
-
-    const handleOnboardingComplete = () => {
-        setShowOnboarding(false);
-    };
-
+const App: React.FC = () => {
     return (
-        <div className="App">
-            {showOnboarding ? (
-                <Onboarding onComplete={handleOnboardingComplete} />
-            ) : (
-                <Camera />
-            )}
-        </div>
+        <Router>
+            <div>
+                <Switch>
+                    <Route path="/camera" component={Camera} />
+                    <Route path="/onboarding" component={Onboarding} />
+                    <Route path="/maptest" componnent={MapTest}
+                </Switch>
+                <Tabs />
+            </div>
+        </Router>
     );
-}
+};
 
 export default App;

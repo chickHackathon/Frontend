@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { CameraContainer, Button, Video, Canvas, Image } from '../styled/CameraStyles';
 
 interface CameraProps {}
 
@@ -37,13 +38,13 @@ const Camera: React.FC<CameraProps> = () => {
     }, [stream]);
 
     return (
-        <div className="camera">
-            <button onClick={handleButtonClick}>Turn on Camera</button>
-            <button onClick={handleTakePhoto} disabled={!stream}>Take Photo</button>
-            {stream && <video ref={videoRef} autoPlay playsInline />}
-            <canvas ref={canvasRef} style={{ display: 'none' }} width="640" height="480"></canvas>
-            {photo && <img src={photo} alt="Captured" />}
-        </div>
+        <CameraContainer>
+            <Button onClick={handleButtonClick}>Turn on Camera</Button>
+            <Button onClick={handleTakePhoto} disabled={!stream}>Take Photo</Button>
+            {stream && <Video ref={videoRef} autoPlay playsInline />}
+            <Canvas ref={canvasRef} width="640" height="480"></Canvas>
+            {photo && <Image src={photo} alt="Captured" />}
+        </CameraContainer>
     );
 };
 
