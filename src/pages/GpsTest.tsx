@@ -13,7 +13,11 @@ const GpsTest: React.FC = () => {
                     setLongitude(position.coords.longitude);
                 },
                 (err) => {
-                    setError(err.message);
+                    if (err.code === err.PERMISSION_DENIED) {
+                        setError('User denied Geolocation');
+                    } else {
+                        setError(err.message);
+                    }
                 }
             );
         } else {
