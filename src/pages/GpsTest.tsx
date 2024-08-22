@@ -5,24 +5,48 @@ const GpsTest: React.FC = () => {
     const [longitude, setLongitude] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setLatitude(position.coords.latitude);
-                    setLongitude(position.coords.longitude);
-                },
-                (err) => {
-                    if (err.code === err.PERMISSION_DENIED) {
-                        setError('User denied Geolocation');
-                    } else {
-                        setError(err.message);
+    const requestGeolocation = () => {
+        navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+            if (result.state === 'granted') {
+                getGeolocation();
+            } else if (result.state === 'prompt') {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        setLatitude(position.coords.latitude);
+                        setLongitude(position.coords.longitude);
+                    },
+                    (err) => {
+                        if (err.code === err.PERMISSION_DENIED) {
+                            setError('User denied Geolocation');
+                        } else {
+                            setError(err.message);
+                        }
                     }
+                );
+            } else if (result.state === 'denied') {
+                setError('Geolocation permission denied');
+            }
+        });
+    };
+
+    const getGeolocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+            },
+            (err) => {
+                if (err.code === err.PERMISSION_DENIED) {
+                    setError('User denied Geolocation');
+                } else {
+                    setError(err.message);
                 }
-            );
-        } else {
-            setError('Geolocation is not supported by this browser.');
-        }
+            }
+        );
+    };
+
+    useEffect(() => {
+        requestGeolocation();
     }, []);
 
     return (
