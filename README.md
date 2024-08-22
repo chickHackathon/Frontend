@@ -1,4 +1,5 @@
-## React PWA 기능 동작 테스트 레포지토리
+## React PWA 프로젝트 기능 검토를 테스트 프로젝트
+단순히 PWA의 기능을 테스트하기 위한 프로젝트 레포지토리입니다.
 ### 접근 가능 url
 https://taupe-bavarois-ca65ef.netlify.app <br>
 url - 기능 테스트 용도

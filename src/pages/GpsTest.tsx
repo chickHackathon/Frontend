@@ -52,6 +52,7 @@ const GpsTest: React.FC = () => {
     return (
         <div>
             <h1>GPS Test</h1>
+            <button onClick={requestGeolocation}>Request Geolocation</button>
             {error ? (
                 <p>Error: {error}</p>
             ) : (
