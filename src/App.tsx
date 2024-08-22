@@ -1,25 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Camera from './pages/Camera';
-import Onboarding from './pages/Onboarding';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Tabs from './layout/Tabs';
-import GpsTest from "./pages/GpsTest";
+import AppRoutes from './Route/routes';
+import SplashScreen from './components/SplashScreen';
 
 const App: React.FC = () => {
-    const handleOnboardingComplete = () => {
-        console.log('Onboarding set');
-    };
+    const [showSplash, setShowSplash] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowSplash(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <Router>
-            <div>
-                <Routes>
-                    <Route path="/camera" element={<Camera />} />
-                    <Route path="/onboarding" element={<Onboarding onComplete={handleOnboardingComplete} />} />
-                    <Route path="/gpstest" element={<GpsTest />} />
-                </Routes>
-                <Tabs />
-            </div>
+            {showSplash ? (
+                <SplashScreen />
+            ) : (
+                <div>
+                    <AppRoutes />
+                    <Tabs />
+                </div>
+            )}
         </Router>
     );
 };
