@@ -1,11 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const GpsTest: React.FC = () => {
     const [latitude, setLatitude] = useState<number | null>(null);
     const [longitude, setLongitude] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
 
-    const requestGeolocation = () => {
+    const getGeolocation = useCallback(() => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+            },
+            (err) => {
+                if (err.code === err.PERMISSION_DENIED) {
+                    setError('User denied Geolocation');
+                } else {
+                    setError(err.message);
+                }
+            }
+        );
+    }, []);
+
+    const requestGeolocation = useCallback(() => {
         navigator.permissions.query({ name: 'geolocation' }).then((result) => {
             if (result.state === 'granted') {
                 getGeolocation();
@@ -27,27 +43,11 @@ const GpsTest: React.FC = () => {
                 setError('Geolocation permission denied');
             }
         });
-    };
-
-    const getGeolocation = () => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);
-            },
-            (err) => {
-                if (err.code === err.PERMISSION_DENIED) {
-                    setError('User denied Geolocation');
-                } else {
-                    setError(err.message);
-                }
-            }
-        );
-    };
+    }, [getGeolocation]);
 
     useEffect(() => {
         requestGeolocation();
-    }, []);
+    }, [requestGeolocation]);
 
     return (
         <div>
