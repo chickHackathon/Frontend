@@ -10,7 +10,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
         <OnboardingContainer>
             <Title>PWA TESTING</Title>
             <Paragraph>click below to start</Paragraph>
-            <Button onClick={onComplete}>Get Started</Button>
+            <Button onClick={onComplete}>Sth btn Later</Button>
         </OnboardingContainer>
     );
 };
