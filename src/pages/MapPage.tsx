@@ -92,7 +92,7 @@ const MapPage: React.FC = () => {
                 <div>
                     <p>Latitude: {latitude}</p>
                     <p>Longitude: {longitude}</p>
-                    <div id="map" style={{ height: '400px', width: '100%' }}></div>
+                    <div id="map" style={{height: '400px', width: '100%'}}></div>
                 </div>
             )}
         </div>
