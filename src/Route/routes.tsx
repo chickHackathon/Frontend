@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Camera from '../pages/Camera';
 import LoginPage from '../pages/LoginPage';
-import GpsTest from '../pages/GpsTest';
+import MapPage from '../pages/MapPage';
 import MemoPage from "../pages/MemoPage";
 
 const AppRoutes: React.FC = () => {
@@ -13,8 +13,8 @@ const AppRoutes: React.FC = () => {
     return (
         <Routes>
             <Route path="/camera" element={<Camera />} />
-            <Route path="/login" element={<LoginPage onComplete={handleLogin} />} />
-            <Route path="/gpstest" element={<GpsTest />} />
+            <Route path="/" element={<LoginPage onComplete={handleLogin} />} />
+            <Route path="/gpstest" element={<MapPage />} />
             <Route path="/memo" element={<MemoPage />} />
         </Routes>
     );

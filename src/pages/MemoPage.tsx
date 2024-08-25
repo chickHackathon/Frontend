@@ -3,6 +3,7 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import ImageUploader from 'quill-image-uploader';
 import 'quill-image-uploader/dist/quill.imageUploader.min.css';
+import { SavedMemoContainer } from "../styled/MemoStyles";
 
 Quill.register('modules/imageUploader', ImageUploader);
 
@@ -53,7 +54,7 @@ const MemoPage: React.FC = () => {
             <div ref={quillRef} style={{ height: '200px' }}></div>
             <button onClick={handleSaveMemo}>Save Memo</button>
             <h2>Saved Memo</h2>
-            <div dangerouslySetInnerHTML={{ __html: memoContent }}></div>
+            <SavedMemoContainer dangerouslySetInnerHTML={{ __html: memoContent }}></SavedMemoContainer>
         </div>
     );
 };

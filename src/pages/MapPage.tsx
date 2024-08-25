@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-const GpsTest: React.FC = () => {
+const MapPage: React.FC = () => {
     const [latitude, setLatitude] = useState<number | null>(null);
     const [longitude, setLongitude] = useState<number | null>(null);
     const [error, setError] = useState<string | null>(null);
@@ -65,4 +65,4 @@ const GpsTest: React.FC = () => {
     );
 };
 
-export default GpsTest;
+export default MapPage;
