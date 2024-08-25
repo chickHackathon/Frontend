@@ -14,7 +14,7 @@ const AppRoutes: React.FC = () => {
         <Routes>
             <Route path="/camera" element={<Camera />} />
             <Route path="/" element={<LoginPage onComplete={handleLogin} />} />
-            <Route path="/gpstest" element={<MapPage />} />
+            <Route path="/map" element={<MapPage />} />
             <Route path="/memo" element={<MemoPage />} />
         </Routes>
     );
