@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
+declare global {
+    interface Window {
+        kakao: any;
+    }
+}
+
 const MapPage: React.FC = () => {
     const [latitude, setLatitude] = useState<number | null>(null);
     const [longitude, setLongitude] = useState<number | null>(null);
@@ -49,6 +55,29 @@ const MapPage: React.FC = () => {
         requestGeolocation();
     }, [requestGeolocation]);
 
+    useEffect(() => {
+        if (latitude && longitude) {
+            const script = document.createElement('script');
+            script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&autoload=false`;
+            script.onload = () => {
+                window.kakao.maps.load(() => {
+                    const container = document.getElementById('map');
+                    const options = {
+                        center: new window.kakao.maps.LatLng(latitude, longitude),
+                        level: 3
+                    };
+                    const map = new window.kakao.maps.Map(container, options);
+                    const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
+                    const marker = new window.kakao.maps.Marker({
+                        position: markerPosition
+                    });
+                    marker.setMap(map);
+                });
+            };
+            document.head.appendChild(script);
+        }
+    }, [latitude, longitude]);
+
     return (
         <div>
             <h1>GPS Test</h1>
@@ -59,6 +88,7 @@ const MapPage: React.FC = () => {
                 <div>
                     <p>Latitude: {latitude}</p>
                     <p>Longitude: {longitude}</p>
+                    <div id="map" style={{ height: '400px', width: '100%' }}></div>
                 </div>
             )}
         </div>
