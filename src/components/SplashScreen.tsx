@@ -18,7 +18,7 @@ const SplashScreen: React.FC = () => {
     return (
         <SplashContainer>
             <SplashText>Splash Screen Test</SplashText>
-            <img src='src/logo.svg' alt={'react logo'}/>
+            <img src='../assets/logo.svg' alt={'react logo test7'}/>
         </SplashContainer>
     );
 };
