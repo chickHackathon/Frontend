@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 
 declare global {
   interface Window {
@@ -19,7 +19,7 @@ const MapPage: React.FC = () => {
       },
       (err) => {
         if (err.code === err.PERMISSION_DENIED) {
-          setError("User denied Geolocation");
+          setError('User denied Geolocation');
         } else {
           setError(err.message);
         }
@@ -28,10 +28,10 @@ const MapPage: React.FC = () => {
   }, []);
 
   const requestGeolocation = useCallback(() => {
-    navigator.permissions.query({ name: "geolocation" }).then((result) => {
-      if (result.state === "granted") {
+    navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+      if (result.state === 'granted') {
         getGeolocation();
-      } else if (result.state === "prompt") {
+      } else if (result.state === 'prompt') {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             setLatitude(position.coords.latitude);
@@ -39,14 +39,14 @@ const MapPage: React.FC = () => {
           },
           (err) => {
             if (err.code === err.PERMISSION_DENIED) {
-              setError("User denied Geolocation");
+              setError('User denied Geolocation');
             } else {
               setError(err.message);
             }
           }
         );
-      } else if (result.state === "denied") {
-        setError("Geolocation permission denied");
+      } else if (result.state === 'denied') {
+        setError('Geolocation permission denied');
       }
     });
   }, [getGeolocation]);
@@ -57,11 +57,11 @@ const MapPage: React.FC = () => {
 
   useEffect(() => {
     if (latitude && longitude) {
-      const script = document.createElement("script");
+      const script = document.createElement('script');
       script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_MAP_API_KEY}&autoload=false`;
       script.onload = () => {
         window.kakao.maps.load(() => {
-          const container = document.getElementById("map");
+          const container = document.getElementById('map');
           if (container) {
             const options = {
               center: new window.kakao.maps.LatLng(latitude, longitude),
@@ -77,7 +77,7 @@ const MapPage: React.FC = () => {
             });
             marker.setMap(map);
           } else {
-            setError("Map container not found");
+            setError('Map container not found');
           }
         });
       };
@@ -95,7 +95,7 @@ const MapPage: React.FC = () => {
         <div>
           <p>Latitude: {latitude}</p>
           <p>Longitude: {longitude}</p>
-          <div id="map" style={{ height: "400px", width: "100%" }}></div>
+          <div id="map" style={{ height: '400px', width: '100%' }}></div>
         </div>
       )}
     </div>
