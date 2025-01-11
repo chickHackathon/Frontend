@@ -7,7 +7,7 @@ import { setUser, logoutUser } from './store/actions';
 import { RootState } from './store/store';
 
 const App: React.FC = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  // const [showSplash, setShowSplash] = useState(true);
 
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state: RootState) => state);
@@ -30,8 +30,8 @@ const App: React.FC = () => {
       setShowSplash(false);
     }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   return (
     <Router>
