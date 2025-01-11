@@ -42,7 +42,8 @@ const Card = ({
               <LocationDiv>
                 <Icon path="map-pin-filled" width="16px" height="16px" />
                 <TimeDiv>
-                  <LocationP>{location}</LocationP>·
+                  <LocationP>{location}</LocationP>
+                  <Icon path="Ellipse 18" width="2px" height="2px" />
                   <LocationP>{date}</LocationP>
                 </TimeDiv>
               </LocationDiv>
@@ -137,12 +138,16 @@ const LocationDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+  height: 16px;
+  padding: 0;
   align-self: stretch;
 `;
 
 const TimeDiv = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
+  height: 16px;
   gap: 4px;
 `;
 

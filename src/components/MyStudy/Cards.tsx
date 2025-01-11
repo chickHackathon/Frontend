@@ -28,7 +28,10 @@ export default Cards;
 
 const CardsDiv = styled.div`
   display: flex;
+  width: 335px;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 `;
 
 /*

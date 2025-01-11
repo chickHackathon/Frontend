@@ -4,7 +4,6 @@ import Camera from '../pages/Camera';
 import MemoPage from '../pages/MemoPage';
 import Register from '../pages/Register/Register';
 import Login from '../pages/Login/Login';
-import StudyRecord from '../pages/studyRecord/StudyRecord';
 import TempPage from '../pages/TempPage';
 import StudyList from '../pages/StudyList';
 import StudyCreate from '../pages/studyCreate/StudyCreate';
@@ -22,7 +21,6 @@ const AppRoutes: React.FC = () => {
       <Route path="/my-page" element={<MyPage />} />
       <Route path="/studycreate" element={<StudyCreate />} />
       <Route path="/studylist" element={<StudyList />} />
-      <Route path="/study-record" element={<StudyRecord />} />
       <Route path="/studycreate" element={<StudyCreate />} />
       <Route path="/studylist" element={<StudyList />} />
       <Route path="/study-detail" element={<StudyDetailPage />} />
