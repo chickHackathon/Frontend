@@ -36,7 +36,7 @@ const SearchBar = styled.div`
     width: 281px;
     padding: 12px 10px;
     border-radius: 30px;
-    border: 1px solid var(--gray-scale-gray-100, #f5f5fa);
+    border: 1px solid #f5f5fa;
     background: #fff;
 
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
@@ -52,9 +52,9 @@ const CategoryButtonDiv = styled.div`
   border-radius: 50%;
   border: 1px solid #f5f5fa;
   background-color: #fff;
-  fill: var(--gray-scale-white, #fff);
+  fill: #fff;
   stroke-width: 1px;
-  stroke: var(--gray-scale-gray-100, #f5f5fa);
+  stroke: #f5f5fa;
   filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.03));
 `;
 

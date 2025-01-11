@@ -46,17 +46,17 @@ const InputLine = styled.input`
   gap: 10px;
   align-self: stretch;
   border-radius: 4px;
-  border: 1px solid var(--gray-scale-gray-200, #e6e6eb);
-  background: var(--gray-scale-white, #fff);
+  border: 1px solid #e6e6eb;
+  background: #fff;
 `;
 
 const InputTitle = styled.p`
   align-self: stretch;
-  color: var(--text-text-2, #69696e);
+  color: #69696e;
   margin: 0;
 
   /* caption1 */
-  font-family: Pretendard;
+  font-family: 'Pretendard-SemiBold';
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

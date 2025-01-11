@@ -68,7 +68,7 @@ const CardDiv = styled.div`
   gap: 10px;
   align-self: stretch;
   border-radius: 8px;
-  border: 1px solid var(--gray-scale-gray-100, #f5f5fa);
+  border: 1px solid #f5f5fa;
   background: #fff;
 
   /* 리스트 드롭쉐도우 */
@@ -117,7 +117,7 @@ const ContentP = styled.p<endProps>`
   margin: 0;
 
   /* body2 */
-  font-family: Pretendard;
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -151,12 +151,12 @@ const LocationP = styled.p`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-  color: var(--text-text-3, #afafb4);
+  color: #afafb4;
   text-overflow: ellipsis;
   margin: 0;
 
   /* overline */
-  font-family: Pretendard;
+  font-family: 'Pretendard-Medium';
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -175,12 +175,12 @@ const PeopleP = styled.p`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-  color: var(--text-text-3, #afafb4);
+  color: #afafb4;
   text-overflow: ellipsis;
   margin: 0;
 
   /* caption2 */
-  font-family: Pretendard;
+  font-family: 'Pretendard-Regular';
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
