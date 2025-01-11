@@ -5,6 +5,7 @@ import LoginPage from '../pages/LoginPage';
 import MapPage from '../pages/MapPage';
 import MemoPage from '../pages/MemoPage';
 import Register from '../pages/Register/Register';
+import Login from '../pages/Login/Login';
 
 const AppRoutes: React.FC = () => {
   const handleLogin = () => {
@@ -18,6 +19,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/map" element={<MapPage />} />
       <Route path="/memo" element={<MemoPage />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };
