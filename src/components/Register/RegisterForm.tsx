@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Input from '../../shared/ui/Input';
 import Button from '../../shared/ui/Button';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -16,6 +18,7 @@ const RegisterForm = () => {
       location: locationValue,
     };
     console.log(formData);
+    navigate('/login');
   };
 
   const [idValue, setIdValue] = useState('');
@@ -77,6 +80,7 @@ const RegisterForm = () => {
             onChange={handleIdChange}
           />
           <Input
+            type="password"
             title="비밀번호"
             placeholder="비밀번호"
             value={passwordValue}
@@ -115,7 +119,9 @@ const RegisterForm = () => {
         </FormDiv>
 
         <MarginDiv></MarginDiv>
-        <Button disabled={isButtonDisabled}>시작하기</Button>
+        <Button type="submit" disabled={isButtonDisabled}>
+          시작하기
+        </Button>
       </FormElement>
     </RegisterFormDiv>
   );
