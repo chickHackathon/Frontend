@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Icon from './Icon';
-
+// import Icon from '../Icon';
 interface TopBarProps {
   children: React.ReactNode;
 }
@@ -8,7 +7,7 @@ interface TopBarProps {
 const TopBar = ({ children }: TopBarProps) => {
   return (
     <TopBarDiv>
-      <Icon width="20px" height="20px" path="chevron_left" />
+      {/*<Icon width="20px" height="20px" path="chevron_left" />*/}
       <TopBarP>{children}</TopBarP>
     </TopBarDiv>
   );
