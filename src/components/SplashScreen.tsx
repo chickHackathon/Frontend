@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../assets/logo.png';
+import tempLogo from '../assets/tempLogo.jpeg'
 
 const SplashContainer = styled.div`
     display: flex;
@@ -30,8 +30,8 @@ const SplashText = styled.h1`
 const SplashScreen: React.FC = () => {
     return (
         <SplashContainer>
-            <SplashText>Splash Screen Test</SplashText>
-            <img src={logo} alt={'react logo test10'}/>
+        <SplashText>삐약이즈</SplashText>
+            <img src={tempLogo} alt={'react logo test10'}/>
         </SplashContainer>
     );
 };
