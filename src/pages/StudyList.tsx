@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 interface StudyItemProps {
   name: string;
@@ -27,11 +27,13 @@ const StudyItem: React.FC<StudyItemProps> = ({
         <Category>{category}</Category>
         <End>{end}</End>
       </div>
-      <div style={{ fontSize: "16px", fontWeight: "bold" }}>{name}</div>
-      <div style={{ fontSize: "12px", color: "#999" }}>
+      <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{name}</div>
+      <div style={{ fontSize: '12px', color: '#999' }}>
         {location} · {date}
       </div>
-      <div style={{ fontSize: "11px", color: "#999" }}>{participants}명 참여중</div>
+      <div style={{ fontSize: '11px', color: '#999' }}>
+        {participants}명 참여중
+      </div>
     </Description>
   </StudyItemBlock>
 );
@@ -39,53 +41,53 @@ const StudyItem: React.FC<StudyItemProps> = ({
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
-  const tabs = ["text1", "text2", "text3", "text4", "text5"];
+  const tabs = ['text1', 'text2', 'text3', 'text4', 'text5'];
 
   const studies: StudyItemProps[] = [
     {
-      name: "영공모 ~영어 공부하는 모임~",
-      category: "카테고리",
-      image: "https://via.placeholder.com/80",
+      name: '영공모 ~영어 공부하는 모임~',
+      category: '카테고리',
+      image: 'https://via.placeholder.com/80',
       participants: 10,
-      location: "지역",
-      date: "1.20(월) 오전 11:00",
-      end: "D-300",
+      location: '지역',
+      date: '1.20(월) 오전 11:00',
+      end: 'D-300',
     },
     {
-      name: "스터디명 스터디명 스터디명",
-      category: "카테고리",
-      image: "https://via.placeholder.com/80",
+      name: '스터디명 스터디명 스터디명',
+      category: '카테고리',
+      image: 'https://via.placeholder.com/80',
       participants: 5,
-      location: "지역",
-      date: "1.20(월) 오전 11:00",
-      end: "D-300",
+      location: '지역',
+      date: '1.20(월) 오전 11:00',
+      end: 'D-300',
     },
     {
-      name: "영공모 ~영어 공부하는 모임~",
-      category: "카테고리",
-      image: "https://via.placeholder.com/80",
+      name: '영공모 ~영어 공부하는 모임~',
+      category: '카테고리',
+      image: 'https://via.placeholder.com/80',
       participants: 10,
-      location: "지역",
-      date: "1.20(월) 오전 11:00",
-      end: "D-300",
+      location: '지역',
+      date: '1.20(월) 오전 11:00',
+      end: 'D-300',
     },
     {
-      name: "스터디명 스터디명 스터디명",
-      category: "카테고리",
-      image: "https://via.placeholder.com/80",
+      name: '스터디명 스터디명 스터디명',
+      category: '카테고리',
+      image: 'https://via.placeholder.com/80',
       participants: 5,
-      location: "지역",
-      date: "1.20(월) 오전 11:00",
-      end: "D-300",
+      location: '지역',
+      date: '1.20(월) 오전 11:00',
+      end: 'D-300',
     },
     {
-      name: "영공모 ~영어 공부하는 모임~",
-      category: "카테고리",
-      image: "https://via.placeholder.com/80",
+      name: '영공모 ~영어 공부하는 모임~',
+      category: '카테고리',
+      image: 'https://via.placeholder.com/80',
       participants: 10,
-      location: "지역",
-      date: "1.20(월) 오전 11:00",
-      end: "D-300",
+      location: '지역',
+      date: '1.20(월) 오전 11:00',
+      end: 'D-300',
     },
   ];
 
@@ -98,7 +100,7 @@ const App: React.FC = () => {
         <input type="text" placeholder="어떤 스터디를 찾으세요?" />
       </SearchBar>
       <Tabs>
-      {tabs.map((tab, index) => (
+        {tabs.map((tab, index) => (
           <Tab
             key={index}
             isActive={activeTab === index}
@@ -148,8 +150,8 @@ const SearchBar = styled.div`
     width: 281px;
     padding: 12px 10px;
     border-radius: 30px;
-    border: 1px solid var(--gray-scale-gray-100, #F5F5FA);
-    background: #FFF;
+    border: 1px solid var(--gray-scale-gray-100, #f5f5fa);
+    background: #fff;
 
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
   }
@@ -166,20 +168,19 @@ const Tab = styled.span<{ isActive: boolean }>`
   cursor: pointer;
   padding: 8px;
   position: relative;
-  color: ${({ isActive }) => (isActive ? "#323237" : "#AFAFB4")};
-  font-weight: ${({ isActive }) => (isActive ? "bold" : "normal")};
+  color: ${({ isActive }) => (isActive ? '#323237' : '#AFAFB4')};
+  font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: -8px;
     left: 0;
-    width: ${({ isActive }) => (isActive ? "100%" : "0")};
+    width: ${({ isActive }) => (isActive ? '100%' : '0')};
     height: 2px;
     background-color: #000;
   }
 `;
-
 
 const StudyListContainer = styled.div`
   display: flex;
@@ -195,8 +196,8 @@ const StudyItemBlock = styled.div`
   padding: 10px;
   width: 315px;
   border-radius: 8px;
-  border: 1px solid var(--gray-scale-gray-100, #F5F5FA);
-  background: #FFF;
+  border: 1px solid var(--gray-scale-gray-100, #f5f5fa);
+  background: #fff;
 
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
 `;
@@ -216,9 +217,9 @@ const Description = styled.div`
 
 const Category = styled.div`
   font-size: 11px;
-  color: var(--text-text-2, #69696E);
+  color: var(--text-text-2, #69696e);
   border-radius: 10px;
-  background: var(--gray-scale-gray-100, #F5F5FA);
+  background: var(--gray-scale-gray-100, #f5f5fa);
   text-align: center;
   padding: 1px 10px;
   display: inline-block;
@@ -228,8 +229,8 @@ const Category = styled.div`
 const End = styled.div`
   font-size: 11px;
   border-radius: 10px;
-  background: var(--blue-100, #E5F0FF);
-  color: var(--blue-400, #66A3FF);
+  background: var(--blue-100, #e5f0ff);
+  color: var(--blue-400, #66a3ff);
   padding: 1px 10px;
   text-align: center;
   display: inline-block;
@@ -242,7 +243,7 @@ const FloatingButton = styled.button`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #0066FF;
+  background: #0066ff;
   color: #fff;
   border: none;
   font-size: 30px;
@@ -250,5 +251,8 @@ const FloatingButton = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 16px 17px 14px 0px rgba(0, 0, 0, 0.05), 7px 8px 10px 0px rgba(0, 0, 0, 0.09), 2px 2px 6px 0px rgba(0, 0, 0, 0.10);
+  box-shadow:
+    16px 17px 14px 0px rgba(0, 0, 0, 0.05),
+    7px 8px 10px 0px rgba(0, 0, 0, 0.09),
+    2px 2px 6px 0px rgba(0, 0, 0, 0.1);
 `;

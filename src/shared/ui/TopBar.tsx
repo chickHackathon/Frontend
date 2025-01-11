@@ -1,17 +1,38 @@
 import styled from 'styled-components';
 import Icon from '../../shared/ui/Icon';
+import { useNavigate } from 'react-router-dom';
 
 interface TopBarProps {
   children: React.ReactNode;
+  pageName: string;
 }
 
-const TopBar = ({ children }: TopBarProps) => {
+const TopBar = ({ children, pageName }: TopBarProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const targetPath = pageName === 'studycreate' ? '/' : '/my-page';
+    navigate(targetPath);
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
     <TopBarDiv>
-      <IconDiv>
+      <IconDiv onClick={handleBack}>
         <Icon width="20px" height="20px" path="chevron_left" />
       </IconDiv>
       <TopBarP>{children}</TopBarP>
+      <TopBarButton onClick={handleClick}>
+        {pageName !== 'my-page' && pageName !== 'register' ? (
+          pageName === 'studycreate' ? (
+            <CreateP>완료</CreateP>
+          ) : (
+            <CreateP>MY</CreateP>
+          )
+        ) : null}
+      </TopBarButton>
     </TopBarDiv>
   );
 };
@@ -43,4 +64,22 @@ const TopBarP = styled.p`
 const IconDiv = styled.div`
   position: absolute;
   left: 15px;
+`;
+
+const TopBarButton = styled.div`
+  position: absolute;
+  right: 17px;
+`;
+
+const CreateP = styled.p`
+  color: var(--blue-600, #06f);
+  text-align: right;
+
+  /* H2 */
+  font-family: 'Pretendard-bold';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.96px;
 `;
