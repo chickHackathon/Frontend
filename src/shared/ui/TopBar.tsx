@@ -46,6 +46,10 @@ const TopBarDiv = styled.div`
   align-items: center;
   justify-content: center;
   gap: 140px;
+  position: fixed;
+  z-index: 1111;
+  background-color: #fff;
+  top: 0;
 `;
 
 const TopBarP = styled.p`
