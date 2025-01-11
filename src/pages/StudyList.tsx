@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { calculateDDay, formatStudyTime } from '../utils/avatarUtils';
+import { FetchStudies } from '../api/studyListApi';
 
 interface StudyItemProps {
-  name: string;
+  id: number;
+  title: string;
   category: string;
-  image: string;
-  participants: number;
-  location: string;
-  date: string;
-  end: string;
+  img: string;
+  content: string;
+  finish: boolean;
+  deadLine: string;
+  studyTime: string;
+  location: string | null;
 }
 
 const StudyItem: React.FC<StudyItemProps> = ({
-  name,
+  title,
   category,
-  image,
-  participants,
+  img,
+  deadLine,
+  studyTime,
   location,
-  date,
-  end,
 }) => (
   <StudyItemBlock>
-    <Img src={image} alt="사진" />
+    <Img src={img || 'https://via.placeholder.com/80'} alt="사진" />
     <Description>
       <div>
         <Category>{category}</Category>
-        <End>{end}</End>
+        <End>{calculateDDay(deadLine)}</End>
       </div>
-      <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{name}</div>
+      <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{title}</div>
       <div style={{ fontSize: '12px', color: '#999' }}>
-        {location} · {date}
-      </div>
-      <div style={{ fontSize: '11px', color: '#999' }}>
-        {participants}명 참여중
+        {location || '위치 미정'} · {formatStudyTime(studyTime)}
       </div>
     </Description>
   </StudyItemBlock>
@@ -40,56 +40,91 @@ const StudyItem: React.FC<StudyItemProps> = ({
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const [studies, setStudies] = useState<StudyItemProps[]>([]);
 
   const tabs = ['text1', 'text2', 'text3', 'text4', 'text5'];
 
-  const studies: StudyItemProps[] = [
+  const dummyStudies: StudyItemProps[] = [
     {
-      name: '영공모 ~영어 공부하는 모임~',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 10,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
+      id: 1,
+      title: '영공모 ~영어 공부하는 모임~',
+      category: 'text1',
+      img: 'https://via.placeholder.com/80',
+      content: '스터디 내용1',
+      finish: false,
+      deadLine: '2025-01-15T23:59:59',
+      studyTime: '2025-01-20T11:00:00',
+      location: '서울',
     },
     {
-      name: '스터디명 스터디명 스터디명',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 5,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
+      id: 2,
+      title: '스터디명 스터디명 스터디명',
+      category: 'text2',
+      img: 'https://via.placeholder.com/80',
+      content: '스터디 내용2',
+      finish: false,
+      deadLine: '2025-01-12T23:59:59',
+      studyTime: '2025-01-15T14:00:00',
+      location: '부산',
     },
     {
-      name: '영공모 ~영어 공부하는 모임~',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 10,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
+      id: 3,
+      title: '영공모 ~영어 공부하는 모임~',
+      category: 'text3',
+      img: 'https://via.placeholder.com/80',
+      content: '스터디 내용3',
+      finish: false,
+      deadLine: '2025-01-18T23:59:59',
+      studyTime: '2025-01-22T09:00:00',
+      location: '대구',
     },
     {
-      name: '스터디명 스터디명 스터디명',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 5,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
-    },
-    {
-      name: '영공모 ~영어 공부하는 모임~',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 10,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
+      id: 4,
+      title: '스터디명 스터디명 스터디명',
+      category: 'text4',
+      img: 'https://via.placeholder.com/80',
+      content: '스터디 내용4',
+      finish: false,
+      deadLine: '2025-01-10T23:59:59',
+      studyTime: '2025-01-13T10:00:00',
+      location: '광주',
     },
   ];
+
+  useEffect(() => {
+    const fetchStudies = async () => {
+      try {
+        const params = {
+          sort: 'default',
+          page: 0,
+          category: tabs[activeTab],
+        };
+        const data = await FetchStudies(params);
+        setStudies(data.result || []);
+      } catch (error) {
+        console.error('Error fetching studies:', error);
+        setStudies(dummyStudies);
+      }
+    };
+
+    fetchStudies();
+  }, []);
+
+  const filteredStudies = studies.filter((study) => {
+    const matchesCategory = study.category === tabs[activeTab];
+    const matchesSearch =
+      searchTerm === '' ||
+      study.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      setSearchTerm(event.currentTarget.value);
+    }
+  };
 
   return (
     <PageContainer>
@@ -97,7 +132,11 @@ const App: React.FC = () => {
         <span>카테고리</span>
       </Header>
       <SearchBar>
-        <input type="text" placeholder="어떤 스터디를 찾으세요?" />
+        <input
+          type="text"
+          placeholder="어떤 스터디를 찾으세요?"
+          onKeyPress={handleKeyPress}
+        />
       </SearchBar>
       <Tabs>
         {tabs.map((tab, index) => (
@@ -111,7 +150,7 @@ const App: React.FC = () => {
         ))}
       </Tabs>
       <StudyListContainer>
-        {studies.map((study, index) => (
+        {filteredStudies.map((study, index) => (
           <StudyItem key={index} {...study} />
         ))}
       </StudyListContainer>
