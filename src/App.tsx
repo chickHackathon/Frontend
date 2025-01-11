@@ -13,12 +13,6 @@ const App: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (showSplash) {
-    return <SplashScreen />;
-  }
 
   return (
     <Router>
@@ -26,9 +20,6 @@ const App: React.FC = () => {
         <SplashScreen />
       ) : (
         <div>
-          <AppRoutes />
-      <Router>
-        <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '800px' }}>
           <AppRoutes />
         </div>
       )}
