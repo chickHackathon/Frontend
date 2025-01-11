@@ -33,6 +33,7 @@ const Buttons = styled.button`
     props.disabled
       ? 'var(--text-text-4, #D7D7DC)'
       : 'var(--text-text5, #FFFFFF)'};
+  cursor: ${(props) => (props.disabled ? 'auto' : 'pointer')};
 
   /* body1 */
   font-family: Pretendard;
