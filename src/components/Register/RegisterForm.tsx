@@ -28,7 +28,7 @@ const RegisterForm = () => {
 
         fetch(`https://dapi.kakao.com/v2/local/search/address.json?query=${address}`, {
           headers: {
-            Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_MAP_API_KEY}`,
+            Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_MAP_REST_API_KEY}`,
           },
         })
           .then((response) => response.json())
