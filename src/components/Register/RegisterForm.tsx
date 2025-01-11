@@ -61,7 +61,7 @@ const RegisterForm = () => {
 
   return (
     <RegisterFormDiv>
-      <form onSubmit={handleSubmit}>
+      <FormElement onSubmit={handleSubmit}>
         <FormDiv>
           <Input
             title="아이디"
@@ -103,7 +103,7 @@ const RegisterForm = () => {
 
         <MarginDiv></MarginDiv>
         <Button disabled={isButtonDisabled}>시작하기</Button>
-      </form>
+      </FormElement>
     </RegisterFormDiv>
   );
 };
@@ -112,14 +112,22 @@ export default RegisterForm;
 
 const RegisterFormDiv = styled.div`
   width: 335px;
+  margin: 0;
+  padding: 0;
 `;
 
 const MarginDiv = styled.div`
-  height: 33px;
+  height: 68px;
 `;
 
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+
+const FormElement = styled.form`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
 `;
