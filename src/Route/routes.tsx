@@ -3,8 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Camera from '../pages/Camera';
 import MemoPage from '../pages/MemoPage';
 import Register from '../pages/Register/Register';
-import StudyDetail from "../pages/studyDetail/StudyDetail";
-import StudyRecord from "../pages/studyRecord/StudyRecord";
+import StudyDetailPage from "../pages/studyDetail/StudyDetailPage";
 import TempPage from "../pages/TempPage";
 import StudyList from "../pages/StudyList";
 import StudyCreate from "../pages/studyCreate/StudyCreate";
@@ -21,8 +20,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/login" element={<Login />} />
         <Route path="/studycreate" element={<StudyCreate />} />
         <Route path="/studylist" element={<StudyList />} />
-        <Route path="/study-detail" element={<StudyDetail />} />
-        <Route path="/study-record" element={<StudyRecord />} />
+        <Route path="/study-detail" element={<StudyDetailPage />} />
     </Routes>
   );
 };

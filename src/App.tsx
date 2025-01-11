@@ -20,7 +20,9 @@ const App: React.FC = () => {
         <SplashScreen />
       ) : (
         <div>
-          <AppRoutes />
+          <div style={{display: 'flex', justifyContent: 'center', maxWidth: '800px'}}>
+            <AppRoutes/>
+          </div>
         </div>
       )}
     </Router>

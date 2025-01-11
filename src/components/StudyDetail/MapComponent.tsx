@@ -109,7 +109,7 @@ const MapComponent: React.FC<{ setCafes: (cafes: any[]) => void }> = ({ setCafes
 
           const circle = new window.kakao.maps.Circle({
             center: middlePosition,
-            radius: 3000,
+            radius: 1000,
             strokeWeight: 2,
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,
@@ -131,7 +131,7 @@ const MapComponent: React.FC<{ setCafes: (cafes: any[]) => void }> = ({ setCafes
               },
               {
                 location: new window.kakao.maps.LatLng(middlePoint.lat, middlePoint.lng),
-                radius: 3000,
+                radius: 1000,
               }
           );
         }
