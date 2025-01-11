@@ -6,7 +6,7 @@ import TopBar from '../../shared/ui/TopBar';
 const Register = () => {
   return (
     <RegisterDiv>
-      <TopBar>회원가입</TopBar>
+      <TopBar pageName="register">회원가입</TopBar>
       <RegisterTitle />
       <RegisterForm />
     </RegisterDiv>

@@ -7,7 +7,7 @@ export default function StudyRecord() {
   const [cafes, setCafes] = useState<any[]>([]);
   return (
     <div>
-      <TopBar>스터디 내역</TopBar>
+      <TopBar pageName="study-record">스터디 내역</TopBar>
       <MapComponent setCafes={setCafes} />
       <StoreListComponent cafes={cafes} />
     </div>
