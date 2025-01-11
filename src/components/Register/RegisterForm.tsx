@@ -42,7 +42,6 @@ const RegisterForm = () => {
           .catch((error) =>
             console.error('Error fetching location data:', error)
           );
-        console.log(process.env.REACT_APP_KAKAO_REST_API_KEY);
       },
     }).open();
   };
@@ -50,18 +49,16 @@ const RegisterForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = {
-      id: idValue,
-      password: passwordValue,
-      nickname: nicknameValue,
-      email: emailValue,
-      location: locationValue,
-      latitude: latitudeValue,
-      longitude: longitudeValue,
-    };
-
     try {
-      const response = await axiosInstance.post('/member/signup', formData);
+      const response = await axiosInstance.post('/member/signup', {
+        id: idValue,
+        password: passwordValue,
+        nickname: nicknameValue,
+        email: emailValue,
+        location: locationValue,
+        latitude: latitudeValue,
+        longitude: longitudeValue,
+      });
       console.log('회원가입 성공:', response.data);
       navigate('/login');
     } catch (error: any) {
