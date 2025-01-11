@@ -1,9 +1,13 @@
-// store.ts
-import { createStore } from 'redux';
-import authReducer from './reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './userSlice';
 
-const store = createStore(authReducer);
+const store = configureStore({
+    reducer: {
+        user: userReducer,
+    },
+});
 
-export type RootState = ReturnType<typeof store.getState>; // 상태 타입 추론
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

@@ -374,7 +374,7 @@ const SelectedOption = styled.div`
   padding: 8px 12px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--text-text-4, #d7d7dc);
+  color: #d7d7dc;
   border: none;
   background-color: #fff;
   text-align: right;
@@ -401,7 +401,7 @@ const Option = styled.div`
   text-align: end;
 
   &:hover {
-    background: var(--blue-100, #e5f0ff);
+    background: #e5f0ff;
   }
 `;
 

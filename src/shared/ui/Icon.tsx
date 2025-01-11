@@ -19,10 +19,16 @@ export default Icon;
 const IconDiv = styled.div<{ width: string; height: string }>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  margin: 0;
+  padding: auto;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
 `;

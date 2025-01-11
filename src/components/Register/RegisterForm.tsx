@@ -3,69 +3,77 @@ import Input from '../../shared/ui/Input';
 import Button from '../../shared/ui/Button';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../api/axiosInstance';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const [idValue, setIdValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [nicknameValue, setNicknameValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+  const [locationValue, setLocationValue] = useState('');
+  const [latitudeValue, setLatitudeValue] = useState<number | null>(null);
+  const [longitudeValue, setLongitudeValue] = useState<number | null>(null);
+
+  const handleAddressSearch = () => {
+    new daum.Postcode({
+      oncomplete: function (data: DaumAddressData) {
+        const { address } = data;
+
+        setLocationValue(address);
+
+        fetch(
+          `https://dapi.kakao.com/v2/local/search/address.json?query=${address}`,
+          {
+            headers: {
+              Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_REST_API_KEY}`,
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.documents.length > 0) {
+              const locationData = result.documents[0];
+              setLatitudeValue(parseFloat(locationData.y));
+              setLongitudeValue(parseFloat(locationData.x));
+            }
+          })
+          .catch((error) =>
+            console.error('Error fetching location data:', error)
+          );
+        console.log(process.env.REACT_APP_KAKAO_REST_API_KEY);
+      },
+    }).open();
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {
       id: idValue,
       password: passwordValue,
       nickname: nicknameValue,
-      phone: phoneValue,
       email: emailValue,
       location: locationValue,
+      latitude: latitudeValue,
+      longitude: longitudeValue,
     };
-    console.log(formData);
-    navigate('/login');
-  };
 
-  const [idValue, setIdValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [nicknameValue, setNicknameValue] = useState('');
-  const [phoneValue, setPhoneValue] = useState('');
-  const [emailValue, setEmailValue] = useState('');
-  const [locationValue, setLocationValue] = useState('');
-
-  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setIdValue(value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPasswordValue(value);
-  };
-  const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setNicknameValue(value);
-  };
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPhoneValue(value);
-  };
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmailValue(value);
-  };
-  const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setLocationValue(value);
-  };
-  const handleAddressSearch = () => {
-    new daum.Postcode({
-      oncomplete: function (data: DaumAddressData) {
-        setLocationValue(data.address);
-      },
-    }).open();
+    try {
+      const response = await axiosInstance.post('/member/signup', formData);
+      console.log('회원가입 성공:', response.data);
+      navigate('/login');
+    } catch (error: any) {
+      console.error('회원가입 실패:', error.response?.data || error.message);
+      alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
   const isButtonDisabled =
     !idValue ||
     !passwordValue ||
     !nicknameValue ||
-    !phoneValue ||
     !emailValue ||
     !locationValue;
 
@@ -77,39 +85,32 @@ const RegisterForm = () => {
             title="아이디"
             placeholder="아이디"
             value={idValue}
-            onChange={handleIdChange}
+            onChange={(e) => setIdValue(e.target.value)}
           />
           <Input
             type="password"
             title="비밀번호"
             placeholder="비밀번호"
             value={passwordValue}
-            onChange={handlePasswordChange}
+            onChange={(e) => setPasswordValue(e.target.value)}
           />
           <Input
             title="닉네임"
             placeholder="삐약이"
             value={nicknameValue}
-            onChange={handleNicknameChange}
-          />
-          <Input
-            title="전화번호"
-            placeholder="010-0000-0000"
-            value={phoneValue}
-            onChange={handlePhoneChange}
+            onChange={(e) => setNicknameValue(e.target.value)}
           />
           <Input
             title="이메일"
             placeholder="0000@000.com"
             value={emailValue}
-            onChange={handleEmailChange}
+            onChange={(e) => setEmailValue(e.target.value)}
           />
           <div>
             <Input
               title="주소 정보"
               placeholder="주소를 검색해주세요"
               value={locationValue}
-              onChange={handleLocationChange}
               readOnly
             />
             <SearchButton type="button" onClick={handleAddressSearch}>
@@ -117,7 +118,6 @@ const RegisterForm = () => {
             </SearchButton>
           </div>
         </FormDiv>
-
         <MarginDiv></MarginDiv>
         <Button type="submit" disabled={isButtonDisabled}>
           시작하기
