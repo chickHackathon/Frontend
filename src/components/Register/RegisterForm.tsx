@@ -78,12 +78,7 @@ const RegisterForm = () => {
     !passwordValue ||
     !nicknameValue ||
     !emailValue ||
-    !locationValue ||
-    latitudeValue === null ||
-    longitudeValue === null ||
-    !region1DepthNameValue ||
-    !region2DepthNameValue ||
-    !region3DepthNameValue;
+    !locationValue
 
   return (
     <RegisterFormDiv>
