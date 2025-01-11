@@ -7,7 +7,7 @@ import Login from '../pages/Login/Login';
 // import TempPage from '../pages/TempPage';
 import StudyList from '../pages/StudyList';
 import StudyCreate from '../pages/studyCreate/StudyCreate';
-import MyPage from '../pages/MyStudy/MyStudy';
+import MyPage from '../pages/MyPage/MyPage';
 import StudyDetailPage from '../pages/studyDetail/StudyDetailPage';
 
 const AppRoutes: React.FC = () => {
