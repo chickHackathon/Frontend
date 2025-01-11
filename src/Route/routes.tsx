@@ -21,8 +21,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/login" element={<Login />} />
         <Route path="/studycreate" element={<StudyCreate />} />
         <Route path="/studylist" element={<StudyList />} />
-        <Route path="/study-detail/:id" element={<StudyDetail />} />
-        <Route path="/study-record/:id" element={<StudyRecord />} />
+        <Route path="/study-detail" element={<StudyDetail />} />
+        <Route path="/study-record" element={<StudyRecord />} />
     </Routes>
   );
 };
