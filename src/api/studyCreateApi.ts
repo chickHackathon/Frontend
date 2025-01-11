@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'https://example.com/api';
+import apiClient from './axiosInstance';
 
 export const PostStudies = async (studyData: {
   title: string;
@@ -13,7 +11,7 @@ export const PostStudies = async (studyData: {
   img: string;
 }) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/study`, studyData);
+    const response = await apiClient.post('/study', studyData);
     return response.data;
   } catch (error) {
     console.error('Error creating study:', error);
