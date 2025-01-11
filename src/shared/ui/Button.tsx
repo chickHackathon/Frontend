@@ -3,12 +3,13 @@ import styled from 'styled-components';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: string;
+  disabled?: boolean;
 }
 
-const Button = ({ children }: ButtonProps) => {
+const Button = ({ children, disabled }: ButtonProps) => {
   return (
     <>
-      <Buttons>{children}</Buttons>
+      <Buttons disabled={disabled}>{children}</Buttons>
     </>
   );
 };
@@ -24,10 +25,14 @@ const Buttons = styled.button`
   gap: 10px;
   border-radius: 4px;
   outline: none;
-  background: var(--blue-600, #06f);
-  &:disabled {
-    background: var(--gray-scale-gray-100, #f5f5fa);
-  }
+  background: ${(props) =>
+    props.disabled
+      ? 'var(--gray-scale-gray-100, #f5f5fa)'
+      : 'var(--blue-600, #06f)'};
+  color: ${(props) =>
+    props.disabled
+      ? 'var(--text-text-4, #D7D7DC)'
+      : 'var(--text-text5, #FFFFFF)'};
 
   /* body1 */
   font-family: Pretendard;

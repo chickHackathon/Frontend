@@ -17,6 +17,9 @@ const TitleDiv = styled.div`
   align-items: flex-start;
   gap: 10px;
   align-self: stretch;
+  padding: 0 20px;
+  margin-top: 28px;
+  margin-bottom: 40px;
 `;
 
 const TitleP = styled.p`

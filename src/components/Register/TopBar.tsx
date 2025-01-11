@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-// import Icon from '../Icon';
+import Icon from '../../shared/ui/Icon';
+
 interface TopBarProps {
   children: React.ReactNode;
 }
@@ -7,7 +8,9 @@ interface TopBarProps {
 const TopBar = ({ children }: TopBarProps) => {
   return (
     <TopBarDiv>
-      {/*<Icon width="20px" height="20px" path="chevron_left" />*/}
+      <IconDiv>
+        <Icon width="20px" height="20px" path="chevron_left" />
+      </IconDiv>
       <TopBarP>{children}</TopBarP>
     </TopBarDiv>
   );
@@ -19,8 +22,8 @@ const TopBarDiv = styled.div`
   display: flex;
   width: 375px;
   height: 44px;
-  padding: 10px 173px 10px 15px;
   align-items: center;
+  justify-content: center;
   gap: 140px;
 `;
 
@@ -35,4 +38,9 @@ const TopBarP = styled.p`
   font-weight: 500;
   line-height: 150%; /* 24px */
   letter-spacing: -0.48px;
+`;
+
+const IconDiv = styled.div`
+  position: absolute;
+  left: 15px;
 `;

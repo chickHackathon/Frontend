@@ -53,6 +53,7 @@ const InputLine = styled.input`
 const InputTitle = styled.p`
   align-self: stretch;
   color: var(--text-text-2, #69696e);
+  margin: 0;
 
   /* caption1 */
   font-family: Pretendard;
