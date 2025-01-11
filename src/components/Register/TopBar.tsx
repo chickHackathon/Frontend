@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Icon from './Icon';
+import Icon from '../../shared/ui/Icon';
 
 interface TopBarProps {
   children: React.ReactNode;
