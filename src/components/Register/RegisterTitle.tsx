@@ -23,7 +23,7 @@ const TitleDiv = styled.div`
 `;
 
 const TitleP = styled.p`
-  color: var(--text-text-1, #323237);
+  color: #323237;
 
   /* H1 */
   font-family: 'Pretendard-Bold';
@@ -36,10 +36,10 @@ const TitleP = styled.p`
 `;
 
 const SubP = styled.p`
-  color: var(--text-text-2, #69696e);
+  color: #69696e;
 
   /* body2 */
-  font-family: 'Pretendard-Bold';
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

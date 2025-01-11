@@ -25,18 +25,12 @@ const Buttons = styled.button`
   gap: 10px;
   border-radius: 4px;
   outline: none;
-  background: ${(props) =>
-    props.disabled
-      ? 'var(--gray-scale-gray-100, #f5f5fa)'
-      : 'var(--blue-600, #06f)'};
-  color: ${(props) =>
-    props.disabled
-      ? 'var(--text-text-4, #D7D7DC)'
-      : 'var(--text-text5, #FFFFFF)'};
+  background: ${(props) => (props.disabled ? '#f5f5fa' : '#06f')};
+  color: ${(props) => (props.disabled ? '#D7D7DC' : '#FFFFFF')};
   cursor: ${(props) => (props.disabled ? 'auto' : 'pointer')};
 
   /* body1 */
-  font-family: Pretendard;
+  font-family: 'Pretendard-Medium';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
