@@ -9,6 +9,7 @@ import StudyRecord from '../pages/studyRecord/StudyRecord';
 import TempPage from '../pages/TempPage';
 import StudyList from '../pages/StudyList';
 import StudyCreate from '../pages/studyCreate/StudyCreate';
+import MyPage from '../pages/MyStudy/MyStudy';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/memo" element={<MemoPage />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/my-page" element={<MyPage />} />
       <Route path="/studycreate" element={<StudyCreate />} />
       <Route path="/studylist" element={<StudyList />} />
       <Route path="/study-detail" element={<StudyDetail />} />
