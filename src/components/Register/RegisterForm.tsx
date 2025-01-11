@@ -50,6 +50,13 @@ const RegisterForm = () => {
     const value = e.target.value;
     setLocationValue(value);
   };
+  const handleAddressSearch = () => {
+    new daum.Postcode({
+      oncomplete: function (data: DaumAddressData) {
+        setLocationValue(data.address);
+      },
+    }).open();
+  };
 
   const isButtonDisabled =
     !idValue ||
@@ -93,12 +100,18 @@ const RegisterForm = () => {
             value={emailValue}
             onChange={handleEmailChange}
           />
-          <Input
-            title="주소 정보"
-            placeholder="스터디 공간 정보 추천을 위해 입력해주세요!"
-            value={locationValue}
-            onChange={handleLocationChange}
-          />
+          <div>
+            <Input
+              title="주소 정보"
+              placeholder="주소를 검색해주세요"
+              value={locationValue}
+              onChange={handleLocationChange}
+              readOnly
+            />
+            <SearchButton type="button" onClick={handleAddressSearch}>
+              주소 찾기
+            </SearchButton>
+          </div>
         </FormDiv>
 
         <MarginDiv></MarginDiv>
@@ -130,4 +143,17 @@ const FormElement = styled.form`
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
+`;
+
+const SearchButton = styled.button`
+  background: #06f;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 8px;
+  cursor: pointer;
+  &:hover {
+    background: #005bb5;
+  }
 `;

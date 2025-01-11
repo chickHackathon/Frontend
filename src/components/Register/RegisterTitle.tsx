@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const RegisterTitle = () => {
   return (
     <TitleDiv>
-      <TitleP>회원 가입을 위해 알려주세요!</TitleP>
+      <TitleP>회원가입을 위해 알려주세요!</TitleP>
       <SubP>서비스 제공 및 이용을 위하여 회원가입이 필요합니다.</SubP>
     </TitleDiv>
   );
@@ -26,7 +26,7 @@ const TitleP = styled.p`
   color: var(--text-text-1, #323237);
 
   /* H1 */
-  font-family: Pretendard;
+  font-family: 'Pretendard-Bold';
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -39,7 +39,7 @@ const SubP = styled.p`
   color: var(--text-text-2, #69696e);
 
   /* body2 */
-  font-family: Pretendard;
+  font-family: 'Pretendard-Bold';
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
