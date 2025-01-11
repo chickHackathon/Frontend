@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Tabs from './layout/Tabs';
 import AppRoutes from './Route/routes';
 import SplashScreen from './components/SplashScreen';
 
@@ -22,7 +21,6 @@ const App: React.FC = () => {
       ) : (
         <div>
           <AppRoutes />
-          <Tabs />
         </div>
       )}
     </Router>
