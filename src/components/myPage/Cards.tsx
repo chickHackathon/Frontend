@@ -1,103 +1,48 @@
 import styled from 'styled-components';
-import Card, { CardProps } from './Card';
+import { useState, useEffect, useCallback } from 'react';
+import Card from './Card';
+import { cardMockData } from './mockData';
 
 const Cards = () => {
-  const cardMockData: CardProps[] = [
-    {
-      image: '/assets/category.svg',
-      category: 'ongoing',
-      title: '1번',
-      location: '서울',
-      date: '오늘',
-      people: 10,
-      dueDate: 10,
-    },
-    {
-      image: '/assets/social.svg',
-      category: 'ongoing',
-      title: '2번',
-      location: '인천',
-      date: '내일',
-      people: 3030,
-      dueDate: 50000,
-    },
-    {
-      image: '/assets/category.svg',
-      category: 'end',
-      title: '3번',
-      location: '부산',
-      date: '모레',
-      people: 25,
-      dueDate: 0,
-    },
-    {
-      image: '/assets/social.svg',
-      category: 'end',
-      title: '4번',
-      location: '대전',
-      date: '2025-02-01',
-      people: 150,
-      dueDate: 0,
-    },
-    {
-      image: '/assets/category.svg',
-      category: 'ongoing',
-      title: '5번',
-      location: '광주',
-      date: '2025-01-18',
-      people: 500,
-      dueDate: 0,
-    },
-    {
-      image: '/assets/social.svg',
-      category: 'end',
-      title: '6번',
-      location: '울산',
-      date: '2025-01-22',
-      people: 220,
-      dueDate: 0,
-    },
-    {
-      image: '/assets/category.svg',
-      category: 'ongoing',
-      title: '7번',
-      location: '대구',
-      date: '2025-01-19',
-      people: 300,
-      dueDate: 0,
-    },
-    {
-      image: '/assets/social.svg',
-      category: 'end',
-      title: '8번',
-      location: '제주',
-      date: '2025-02-05',
-      people: 50,
-      dueDate: 0,
-    },
-    {
-      image: '/assets/category.svg',
-      category: 'ongoing',
-      title: '9번',
-      location: '서울',
-      date: '2025-02-12',
-      people: 12,
-      dueDate: 0,
-    },
-    {
-      image: '/assets/social.svg',
-      category: 'end',
-      title: '10번',
-      location: '인천',
-      date: '2025-02-20',
-      people: 1000,
-      dueDate: 0,
-    },
-  ];
+  const [visibleCards, setVisibleCards] = useState(cardMockData.slice(0, 12));
+  const [isLoading, setIsLoading] = useState(false);
+
+  const loadMoreCards = useCallback(() => {
+    if (isLoading) return; // 이미 로딩 중이면 함수 종료
+    setIsLoading(true);
+
+    // 바닥에 닿을 때마다 6개씩 더 로드
+    setTimeout(() => {
+      const nextCards = cardMockData.slice(
+        visibleCards.length,
+        visibleCards.length + 6
+      );
+      setVisibleCards((prevCards) => [...prevCards, ...nextCards]);
+      setIsLoading(false);
+    }, 1000); // 비동기 처리를 위한 딜레이
+  }, [visibleCards, isLoading]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !isLoading) {
+          loadMoreCards();
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    const sentinel = document.getElementById('sentinel');
+    if (sentinel) observer.observe(sentinel);
+
+    return () => {
+      if (sentinel) observer.unobserve(sentinel);
+    };
+  }, [isLoading, loadMoreCards]);
 
   return (
     <CardsDiv>
-      {cardMockData.map((data, index) => (
+      {visibleCards.map((data, index) => (
         <Card
           key={index}
           image={data.image}
@@ -109,6 +54,7 @@ const Cards = () => {
           dueDate={data.dueDate}
         />
       ))}
+      <div id="sentinel" style={{ height: '10px' }} />
     </CardsDiv>
   );
 };

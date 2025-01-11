@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Cards from './Cards';
 import Manages from './Manages';
+import Acceptances from './Acceptances';
 
 const Tab = () => {
   const [selectedOption, setSelectedOption] = useState<string>(
@@ -22,15 +23,22 @@ const Tab = () => {
           참여중인 스터디
         </Option>
         <Option
+          isSelected={selectedOption === 'study-application'}
+          onClick={() => handleOptionClick('study-application')}
+        >
+          활동
+        </Option>
+        <Option
           isSelected={selectedOption === 'study-management'}
           onClick={() => handleOptionClick('study-management')}
         >
-          스터디 관리
+          내 모임
         </Option>
       </OptionContainer>
 
       {/* 조건부 렌더링 */}
       {selectedOption === 'study-participation' && <Cards />}
+      {selectedOption === 'study-application' && <Acceptances />}
       {selectedOption === 'study-management' && <Manages />}
     </TabContainer>
   );

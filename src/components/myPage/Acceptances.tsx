@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import Manage from './Manage';
-import { manageMockDataList } from './mockData';
+import Acceptance from './Acceptance';
+import { acceptanceMockDataList } from './mockData';
 
-const Manages = () => {
-  const [visibleManageData, setVisibleManageData] = useState(
-    manageMockDataList.slice(0, 12)
+const Acceptances = () => {
+  const [visibleAcceptanceData, setVisibleAcceptanceData] = useState(
+    acceptanceMockDataList.slice(0, 12)
   );
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -14,11 +14,11 @@ const Manages = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      const nextManageData = manageMockDataList.slice(
-        visibleManageData.length,
-        visibleManageData.length + 6
+      const nextAcceptanceData = acceptanceMockDataList.slice(
+        visibleAcceptanceData.length,
+        visibleAcceptanceData.length + 6
       );
-      setVisibleManageData((prev) => [...prev, ...nextManageData]);
+      setVisibleAcceptanceData((prev) => [...prev, ...nextAcceptanceData]);
       setIsLoading(false);
     }, 1000);
   };
@@ -40,19 +40,26 @@ const Manages = () => {
         container.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [visibleManageData, isLoading]);
+  }, [visibleAcceptanceData, isLoading]);
 
   return (
     <div
       ref={containerRef}
       style={{ overflowY: 'scroll', height: '100vh', paddingBottom: '50px' }}
     >
-      {visibleManageData.map((data, index) => (
-        <Manage key={index} title={data.title} name={data.name} />
+      {visibleAcceptanceData.map((data, index) => (
+        <Acceptance
+          key={index}
+          image={data.image}
+          title={data.title}
+          location={data.location}
+          date={data.date}
+          userIsAccepted={data.userIsAccepted}
+        />
       ))}
       <div id="sentinel" style={{ height: '10px' }} />
     </div>
   );
 };
 
-export default Manages;
+export default Acceptances;

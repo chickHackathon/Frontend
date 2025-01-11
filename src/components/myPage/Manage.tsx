@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
-interface ProfileProps {
-  profileImage: string;
-}
-
-interface ManageProps extends ProfileProps {
+interface ManageProps {
   title: string;
   name: string;
 }
 
-const Manage = ({ title, profileImage, name }: ManageProps) => {
+const Manage = ({ title, name }: ManageProps) => {
   const [isAccepted, setIsAccepted] = useState<null | true | false>(null);
   const [clicked, setClicked] = useState<'reject' | 'accept' | 'pending'>(
     'pending'
@@ -37,7 +33,7 @@ const Manage = ({ title, profileImage, name }: ManageProps) => {
                 <StudyP>{title}</StudyP>
               </PendingAlertDiv>
               <ProfileContainer>
-                <Profile src={profileImage} />
+                <Profile src={'/assets/ourIcon.svg'} />
                 <ProfileP>{name}</ProfileP>
               </ProfileContainer>
             </PendingDiv>
@@ -60,7 +56,7 @@ const Manage = ({ title, profileImage, name }: ManageProps) => {
                 </FinishedP>
                 <StudyP>{title}</StudyP>
                 <ProfileContainer>
-                  <Profile src={profileImage} />
+                  <Profile src={'/assets/ourIcon.svg'} />
                   <ProfileP>{name}</ProfileP>
                 </ProfileContainer>
               </FinishedDiv>
@@ -72,7 +68,7 @@ const Manage = ({ title, profileImage, name }: ManageProps) => {
                 </FinishedP>
                 <StudyP>{title}</StudyP>
                 <ProfileContainer>
-                  <Profile src={profileImage} />
+                  <Profile src={'/assets/ourIcon.svg'} />
                   <ProfileP>{name}</ProfileP>
                 </ProfileContainer>
               </FinishedDiv>
@@ -170,6 +166,7 @@ const Profile = styled.img`
   width: 28px;
   height: 28px;
   fill: #e6e6eb;
+  border-radius: 50%;
 `;
 
 const ProfileP = styled.p`
