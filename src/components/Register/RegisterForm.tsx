@@ -49,16 +49,18 @@ const RegisterForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const formData = {
+      id: idValue,
+      password: passwordValue,
+      nickname: nicknameValue,
+      email: emailValue,
+      location: locationValue,
+      latitude: latitudeValue,
+      longitude: longitudeValue,
+    };
+
     try {
-      const response = await axiosInstance.post('/member/signup', {
-        id: idValue,
-        password: passwordValue,
-        nickname: nicknameValue,
-        email: emailValue,
-        location: locationValue,
-        latitude: latitudeValue,
-        longitude: longitudeValue,
-      });
+      const response = await axiosInstance.post('/member/signup', formData);
       console.log('회원가입 성공:', response.data);
       navigate('/login');
     } catch (error: any) {
