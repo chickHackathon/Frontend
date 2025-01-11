@@ -23,9 +23,9 @@ const ChipContainer = styled.div<ChipContainerProps>`
   border-radius: 10px;
   background: ${({ type }) =>
     type === 'category'
-      ? 'var(--gray-scale-gray-100, #f5f5fa)'
+      ? '#f5f5fa'
       : type === 'ongoing'
-        ? 'var(--blue-100, #E5F0FF)'
+        ? '#E5F0FF'
         : '#FFECEC'};
   color: ${({ type }) =>
     type === 'category'
@@ -33,7 +33,7 @@ const ChipContainer = styled.div<ChipContainerProps>`
       : type === 'ongoing'
         ? '#66A3FF'
         : '#FF6E6E'};
-  font-family: Pretendard;
+  font-family: 'Pretendard-Regular';
   font-size: 11px;
   font-style: normal;
   font-weight: 400;

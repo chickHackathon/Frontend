@@ -150,7 +150,7 @@ const SearchBar = styled.div`
     width: 281px;
     padding: 12px 10px;
     border-radius: 30px;
-    border: 1px solid var(--gray-scale-gray-100, #f5f5fa);
+    border: 1px solid #f5f5fa;
     background: #fff;
 
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
@@ -196,7 +196,7 @@ const StudyItemBlock = styled.div`
   padding: 10px;
   width: 315px;
   border-radius: 8px;
-  border: 1px solid var(--gray-scale-gray-100, #f5f5fa);
+  border: 1px solid #f5f5fa;
   background: #fff;
 
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
@@ -217,9 +217,9 @@ const Description = styled.div`
 
 const Category = styled.div`
   font-size: 11px;
-  color: var(--text-text-2, #69696e);
+  color: #69696e;
   border-radius: 10px;
-  background: var(--gray-scale-gray-100, #f5f5fa);
+  background: #f5f5fa;
   text-align: center;
   padding: 1px 10px;
   display: inline-block;
@@ -229,8 +229,8 @@ const Category = styled.div`
 const End = styled.div`
   font-size: 11px;
   border-radius: 10px;
-  background: var(--blue-100, #e5f0ff);
-  color: var(--blue-400, #66a3ff);
+  background: #e5f0ff;
+  color: #66a3ff;
   padding: 1px 10px;
   text-align: center;
   display: inline-block;

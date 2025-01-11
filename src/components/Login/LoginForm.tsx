@@ -85,8 +85,8 @@ const FormDiv = styled.div`
 `;
 
 const RegisterP = styled.p`
-  color: var(--text-text-2, #69696e);
-  font-family: Pretendard;
+  color: #69696e;
+  font-family: 'Pretendard-SemiBold';
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

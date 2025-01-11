@@ -53,7 +53,7 @@ const TopBarP = styled.p`
   text-align: center;
 
   /* body1 */
-  font-family: Pretendard;
+  font-family: 'Pretendard-Medium';
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -72,7 +72,7 @@ const TopBarButton = styled.div`
 `;
 
 const CreateP = styled.p`
-  color: var(--blue-600, #06f);
+  color: #06f;
   text-align: right;
 
   /* H2 */

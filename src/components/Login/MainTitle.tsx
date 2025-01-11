@@ -22,7 +22,7 @@ const MainDiv = styled.div`
 `;
 
 const MainP = styled.p`
-  color: var(--text-text-1, #323237);
+  color: #323237;
   font-family: 'Pretendard-Bold';
   font-size: 28px;
   font-style: normal;
@@ -33,7 +33,7 @@ const MainP = styled.p`
 `;
 
 const MainSpan = styled.span`
-  color: var(--blue-600, #06f);
+  color: #06f;
   font-family: 'Pretendard-Bold';
   font-size: 28px;
   font-style: normal;
