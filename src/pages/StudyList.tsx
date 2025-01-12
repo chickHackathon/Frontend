@@ -2,18 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { calculateDDay, formatStudyTime } from '../utils/avatarUtils';
 import { FetchStudies } from '../api/studyListApi';
-
-interface StudyItemProps {
-  id: number;
-  title: string;
-  category: string;
-  img: string;
-  content: string;
-  finish: boolean;
-  deadLine: string;
-  studyTime: string;
-  location: string | null;
-}
+import dummyStudies, { StudyItemProps } from '../data/dummyStudies';
+import { Link } from 'react-router-dom';
 
 const StudyItem: React.FC<StudyItemProps> = ({
   title,
@@ -45,53 +35,6 @@ const App: React.FC = () => {
   const [studies, setStudies] = useState<StudyItemProps[]>([]);
 
   const tabs = ['text1', 'text2', 'text3', 'text4', 'text5'];
-
-  const dummyStudies: StudyItemProps[] = [
-    {
-      id: 1,
-      title: '영공모 ~영어 공부하는 모임~',
-      category: 'text1',
-      img: 'https://via.placeholder.com/80',
-      content: '스터디 내용1',
-      finish: false,
-      deadLine: '2025-01-15T23:59:59',
-      studyTime: '2025-01-20T11:00:00',
-      location: '서울',
-    },
-    {
-      id: 2,
-      title: '스터디명 스터디명 스터디명',
-      category: 'text2',
-      img: 'https://via.placeholder.com/80',
-      content: '스터디 내용2',
-      finish: false,
-      deadLine: '2025-01-12T23:59:59',
-      studyTime: '2025-01-15T14:00:00',
-      location: '부산',
-    },
-    {
-      id: 3,
-      title: '영공모 ~영어 공부하는 모임~',
-      category: 'text3',
-      img: 'https://via.placeholder.com/80',
-      content: '스터디 내용3',
-      finish: false,
-      deadLine: '2025-01-18T23:59:59',
-      studyTime: '2025-01-22T09:00:00',
-      location: '대구',
-    },
-    {
-      id: 4,
-      title: '스터디명 스터디명 스터디명',
-      category: 'text4',
-      img: 'https://via.placeholder.com/80',
-      content: '스터디 내용4',
-      finish: false,
-      deadLine: '2025-01-10T23:59:59',
-      studyTime: '2025-01-13T10:00:00',
-      location: '광주',
-    },
-  ];
 
   useEffect(() => {
     const fetchStudies = async () => {
@@ -130,6 +73,9 @@ const App: React.FC = () => {
     <PageContainer>
       <Header>
         <span>카테고리</span>
+        <Link to="/my-page">
+          <ProfileButton>MY</ProfileButton>
+        </Link>
       </Header>
       <SearchBar>
         <input
@@ -154,7 +100,9 @@ const App: React.FC = () => {
           <StudyItem key={index} {...study} />
         ))}
       </StudyListContainer>
-      <FloatingButton>+</FloatingButton>
+      <Link to="/studycreate">
+        <FloatingButton>+</FloatingButton>
+      </Link>
     </PageContainer>
   );
 };
@@ -177,6 +125,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  position: relative;
 `;
 
 const SearchBar = styled.div`
@@ -201,6 +150,16 @@ const Tabs = styled.div`
   justify-content: space-between;
   padding: 8px 16px;
   border-bottom: 1px solid #ddd;
+`;
+
+const ProfileButton = styled.button`
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: #000;
+  position: absolute;
+  right: 20px;
+  top: 13px;
 `;
 
 const Tab = styled.span<{ isActive: boolean }>`
