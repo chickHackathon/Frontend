@@ -26,11 +26,9 @@ const RegisterForm = () => {
 
         setLocationValue(address);
 
-        const REST_KEY = 'c33ed3bcf4aeb2d6c50a1e7940919e5b';
-
         fetch(`https://dapi.kakao.com/v2/local/search/address.json?query=${address}`, {
           headers: {
-            Authorization: `KakaoAK ${REST_KEY}`,
+            Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_REST_API_KEY}`,
           },
         })
           .then((response) => response.json())
