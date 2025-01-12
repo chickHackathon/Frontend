@@ -132,11 +132,6 @@ const App: React.FC = () => {
     });
   };
 
-  // const handleSaveMemo = () => {
-  //   console.log('버튼 클릭');
-  //   console.log('Memo saved:', memoContent);
-  // };
-
   return (
     <PageContainer>
       <Header>
