@@ -144,7 +144,9 @@ const App: React.FC = () => {
           <BackButton>&lt;</BackButton>
         </Link>
         <HeaderTitle>스터디 모집</HeaderTitle>
-        <CompleteButton onClick={handleComplete}>완료</CompleteButton>
+        <Link to="/studylist">
+          <CompleteButton onClick={handleComplete}>완료</CompleteButton>
+        </Link>
       </Header>
       <ContentContainer>
         <Imgdiv>

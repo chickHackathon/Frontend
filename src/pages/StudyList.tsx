@@ -97,7 +97,9 @@ const App: React.FC = () => {
       </Tabs>
       <StudyListContainer>
         {filteredStudies.map((study, index) => (
-          <StudyItem key={index} {...study} />
+          <Link to="/study-detail">
+            <StudyItem key={index} {...study} />
+          </Link>
         ))}
       </StudyListContainer>
       <Link to="/studycreate">
