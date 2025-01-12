@@ -16,7 +16,6 @@ export default function StudyDetailPage() {
     <DetailFrame>
       <TopBar pageName="studydetail">스터디 내역</TopBar>
       <StudyDetailsComponent
-        imageUrl="백엔드에서_받은_이미지_URL"
         avatarNum={2}
       />
       <BookerListComponent  avatarNum={1}/>

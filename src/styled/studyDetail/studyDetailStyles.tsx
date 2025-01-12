@@ -19,13 +19,13 @@ export const DetailTopArea = styled.div`
  justify-content: center;
 `;
 
-export const BackgroundImageFrame = styled.div<{ imageUrl: string }>`
+export const BackgroundImageFrame = styled.div`
  position: absolute;
  top: 0;
  width: 100%;
  height: 167px;
  flex-shrink: 0;
-  background: url(${props => props.imageUrl}) lightgray 50% / cover no-repeat;
+  background: lightgray 50% / cover no-repeat;
 `;
 
 export const DetailInfoWrap = styled.div`

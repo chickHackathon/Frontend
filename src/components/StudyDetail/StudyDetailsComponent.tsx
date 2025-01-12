@@ -10,17 +10,18 @@ import {
 import Icon from "../../shared/ui/Icon";
 
 interface StudyDetailsComponentProps {
-    imageUrl?: string;
     avatarNum: number;
 }
 
-export default function StudyDetailsComponentReact({ avatarNum, imageUrl }: StudyDetailsComponentProps) {
+export default function StudyDetailsComponentReact({ avatarNum }: StudyDetailsComponentProps) {
 
 
     return (
       <>
           <DetailTopArea>
-              <BackgroundImageFrame imageUrl={imageUrl || ""} />
+              <BackgroundImageFrame >
+                  <Icon path={'detailBG'} width={'100%'} height={'100%'}/>
+              </BackgroundImageFrame>
               <DetailInfoWrap>
                   <InfoTitle>
                       <CategoryLabel>카테고리</CategoryLabel>
@@ -47,7 +48,7 @@ export default function StudyDetailsComponentReact({ avatarNum, imageUrl }: Stud
               </DetailInfoWrap>
           </DetailTopArea>
           <DetailContents>
-              <Icon path={'detailLmg'} width={'100%'} height={'100%'}/>
+              <Icon path={'detailImg'} width={'100%'} height={'100%'}/>
           </DetailContents>
       </>
     );
