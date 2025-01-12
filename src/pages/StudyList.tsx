@@ -1,38 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-interface StudyItemProps {
-  name: string;
-  category: string;
-  image: string;
-  participants: number;
-  location: string;
-  date: string;
-  end: string;
-}
+import { calculateDDay, formatStudyTime } from '../utils/avatarUtils';
+import { FetchStudies } from '../api/studyListApi';
+import dummyStudies, { StudyItemProps } from '../data/dummyStudies';
+import { Link } from 'react-router-dom';
 
 const StudyItem: React.FC<StudyItemProps> = ({
-  name,
+  title,
   category,
-  image,
-  participants,
+  img,
+  deadLine,
+  studyTime,
   location,
-  date,
-  end,
 }) => (
   <StudyItemBlock>
-    <Img src={image} alt="사진" />
+    <Img src={img || 'https://via.placeholder.com/80'} alt="사진" />
     <Description>
       <div>
         <Category>{category}</Category>
-        <End>{end}</End>
+        <End>{calculateDDay(deadLine)}</End>
       </div>
-      <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{name}</div>
+      <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{title}</div>
       <div style={{ fontSize: '12px', color: '#999' }}>
-        {location} · {date}
-      </div>
-      <div style={{ fontSize: '11px', color: '#999' }}>
-        {participants}명 참여중
+        {location || '위치 미정'} · {formatStudyTime(studyTime)}
       </div>
     </Description>
   </StudyItemBlock>
@@ -40,64 +30,59 @@ const StudyItem: React.FC<StudyItemProps> = ({
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const [studies, setStudies] = useState<StudyItemProps[]>([]);
 
   const tabs = ['text1', 'text2', 'text3', 'text4', 'text5'];
 
-  const studies: StudyItemProps[] = [
-    {
-      name: '영공모 ~영어 공부하는 모임~',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 10,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
-    },
-    {
-      name: '스터디명 스터디명 스터디명',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 5,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
-    },
-    {
-      name: '영공모 ~영어 공부하는 모임~',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 10,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
-    },
-    {
-      name: '스터디명 스터디명 스터디명',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 5,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
-    },
-    {
-      name: '영공모 ~영어 공부하는 모임~',
-      category: '카테고리',
-      image: 'https://via.placeholder.com/80',
-      participants: 10,
-      location: '지역',
-      date: '1.20(월) 오전 11:00',
-      end: 'D-300',
-    },
-  ];
+  useEffect(() => {
+    const fetchStudies = async () => {
+      try {
+        const params = {
+          sort: 'default',
+          page: 0,
+          category: tabs[activeTab],
+        };
+        const data = await FetchStudies(params);
+        setStudies(data.result || []);
+      } catch (error) {
+        console.error('Error fetching studies:', error);
+        setStudies(dummyStudies);
+      }
+    };
+
+    fetchStudies();
+  }, []);
+
+  const filteredStudies = studies.filter((study) => {
+    const matchesCategory = study.category === tabs[activeTab];
+    const matchesSearch =
+      searchTerm === '' ||
+      study.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      setSearchTerm(event.currentTarget.value);
+    }
+  };
 
   return (
     <PageContainer>
       <Header>
         <span>카테고리</span>
+        <Link to="/my-page">
+          <ProfileButton>MY</ProfileButton>
+        </Link>
       </Header>
       <SearchBar>
-        <input type="text" placeholder="어떤 스터디를 찾으세요?" />
+        <input
+          type="text"
+          placeholder="어떤 스터디를 찾으세요?"
+          onKeyPress={handleKeyPress}
+        />
       </SearchBar>
       <Tabs>
         {tabs.map((tab, index) => (
@@ -111,11 +96,15 @@ const App: React.FC = () => {
         ))}
       </Tabs>
       <StudyListContainer>
-        {studies.map((study, index) => (
-          <StudyItem key={index} {...study} />
+        {filteredStudies.map((study, index) => (
+          <Link to="/study-detail">
+            <StudyItem key={index} {...study} />
+          </Link>
         ))}
       </StudyListContainer>
-      <FloatingButton>+</FloatingButton>
+      <Link to="/studycreate">
+        <FloatingButton>+</FloatingButton>
+      </Link>
     </PageContainer>
   );
 };
@@ -138,6 +127,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  position: relative;
 `;
 
 const SearchBar = styled.div`
@@ -162,6 +152,16 @@ const Tabs = styled.div`
   justify-content: space-between;
   padding: 8px 16px;
   border-bottom: 1px solid #ddd;
+`;
+
+const ProfileButton = styled.button`
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: #000;
+  position: absolute;
+  right: 20px;
+  top: 13px;
 `;
 
 const Tab = styled.span<{ isActive: boolean }>`
