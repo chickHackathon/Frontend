@@ -11,7 +11,7 @@ export const PostStudies = async (studyData: {
   img: string;
 }) => {
   try {
-    const response = await apiClient.post('/study', studyData);
+    const response = await apiClient.post('/study/1', studyData);
     return response.data;
   } catch (error) {
     console.error('Error creating study:', error);

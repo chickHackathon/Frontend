@@ -7,6 +7,7 @@ import 'quill-image-uploader/dist/quill.imageUploader.min.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { PostStudies } from '../../api/studyCreateApi';
+import { Link } from 'react-router-dom';
 
 Quill.register('modules/imageUploader', ImageUploader);
 
@@ -119,7 +120,6 @@ const App: React.FC = () => {
       console.log('Post Response:', response);
     } catch (error) {
       console.error('Error posting study:', error);
-      alert('스터디 등록에 실패했습니다.');
     }
   };
 
@@ -140,7 +140,9 @@ const App: React.FC = () => {
   return (
     <PageContainer>
       <Header>
-        <BackButton>&lt;</BackButton>
+        <Link to="/studylist">
+          <BackButton>&lt;</BackButton>
+        </Link>
         <HeaderTitle>스터디 모집</HeaderTitle>
         <CompleteButton onClick={handleComplete}>완료</CompleteButton>
       </Header>
