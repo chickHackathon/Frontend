@@ -34,4 +34,5 @@ const IconDiv = styled.div<{
         border-radius: ${({ borderRadius }) => borderRadius || '0'};
         background-color: ${({ backgroundColor }) => backgroundColor || 'transparent'};
     }
+
 `;

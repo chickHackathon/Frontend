@@ -15,9 +15,6 @@ const RegisterForm = () => {
   const [locationValue, setLocationValue] = useState('');
   const [latitudeValue, setLatitudeValue] = useState<number | null>(null);
   const [longitudeValue, setLongitudeValue] = useState<number | null>(null);
-  const [region1DepthNameValue, setRegion1DepthNameValue] = useState('');
-  const [region2DepthNameValue, setRegion2DepthNameValue] = useState('');
-  const [region3DepthNameValue, setRegion3DepthNameValue] = useState('');
 
   const handleAddressSearch = () => {
     new daum.Postcode({
@@ -26,23 +23,26 @@ const RegisterForm = () => {
 
         setLocationValue(address);
 
-        fetch(`https://dapi.kakao.com/v2/local/search/address.json?query=${address}`, {
-          headers: {
-            Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_REST_API_KEY}`,
-          },
-        })
+        fetch(
+          `https://dapi.kakao.com/v2/local/search/address.json?query=${address}`,
+          {
+            headers: {
+              Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_REST_API_KEY}`,
+            },
+          }
+        )
+
           .then((response) => response.json())
           .then((result) => {
             if (result.documents.length > 0) {
               const locationData = result.documents[0];
               setLatitudeValue(parseFloat(locationData.y));
               setLongitudeValue(parseFloat(locationData.x));
-              setRegion1DepthNameValue(locationData.region_1depth_name);
-              setRegion2DepthNameValue(locationData.region_2depth_name);
-              setRegion3DepthNameValue(locationData.region_3depth_name);
             }
           })
-          .catch((error) => console.error('Error fetching location data:', error));
+          .catch((error) =>
+            console.error('Error fetching location data:', error)
+          );
         console.log(process.env.REACT_APP_KAKAO_REST_API_KEY);
       },
     }).open();
@@ -59,9 +59,6 @@ const RegisterForm = () => {
       location: locationValue,
       latitude: latitudeValue,
       longitude: longitudeValue,
-      region_1depth_name: region1DepthNameValue,
-      region_2depth_name: region2DepthNameValue,
-      region_3depth_name: region3DepthNameValue,
     };
 
     try {
@@ -79,7 +76,7 @@ const RegisterForm = () => {
     !passwordValue ||
     !nicknameValue ||
     !emailValue ||
-    !locationValue
+    !locationValue;
 
   return (
     <RegisterFormDiv>
@@ -115,7 +112,8 @@ const RegisterForm = () => {
               title="주소 정보"
               placeholder="주소를 검색해주세요"
               value={locationValue}
-              readOnly/>
+              readOnly
+            />
             <SearchButton type="button" onClick={handleAddressSearch}>
               주소 찾기
             </SearchButton>
@@ -133,36 +131,36 @@ const RegisterForm = () => {
 export default RegisterForm;
 
 const RegisterFormDiv = styled.div`
-    width: 335px;
-    margin: 0;
-    padding: 0;
+  width: 335px;
+  margin: 0;
+  padding: 0;
 `;
 
 const MarginDiv = styled.div`
-    height: 68px;
+  height: 68px;
 `;
 
 const FormDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 const FormElement = styled.form`
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
 `;
 
 const SearchButton = styled.button`
-    background: #06f;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 8px;
-    cursor: pointer;
-    &:hover {
-        background: #005bb5;
-    }
+  background: #06f;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 8px;
+  cursor: pointer;
+  &:hover {
+    background: #005bb5;
+  }
 `;
