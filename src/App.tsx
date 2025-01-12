@@ -14,16 +14,16 @@ const App: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (showSplash) {
-    return <SplashScreen />;
-  }
-
   return (
-      <Router>
-        <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '800px' }}>
+    <Router>
+      {showSplash ? (
+        <SplashScreen />
+      ) : (
+        <div>
           <AppRoutes />
         </div>
-      </Router>
+      )}
+    </Router>
   );
 };
 

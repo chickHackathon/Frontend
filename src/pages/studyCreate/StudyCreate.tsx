@@ -6,21 +6,34 @@ import ImageUploader from 'quill-image-uploader';
 import 'quill-image-uploader/dist/quill.imageUploader.min.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { PostStudies } from '../../api/studyCreateApi';
+import { Link } from 'react-router-dom';
 
 Quill.register('modules/imageUploader', ImageUploader);
 
 const App: React.FC = () => {
   const [memoContent, setMemoContent] = useState<string>('');
+  const [imagePreview, setImagePreview] = useState<string>('');
+  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const quillRef = useRef<HTMLDivElement | null>(null);
   const quillInstanceRef = useRef<Quill | null>(null);
 
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
-  const [selectedRegion, setSelectedRegion] = useState('선택해주세요.');
-  const [selectedCategory, setSelectedCategory] = useState('선택해주세요.');
+  const [selectedRegion, setSelectedRegion] = useState<string>('선택해주세요.');
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>('선택해주세요.');
 
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [selectedDeadline, setSelectedDeadline] = useState<Date | null>(
+    new Date()
+  );
+  const [selectedStudyDate, setSelectedStudyDate] = useState<Date | null>(
+    new Date()
+  );
+
+  const [title, setTitle] = useState<string>('');
+  const [memberId] = useState<number>(2);
 
   const toggleDropdown = (type: string) => {
     if (type === 'region') {
@@ -74,21 +87,81 @@ const App: React.FC = () => {
     }
   }, []);
 
-  // const handleSaveMemo = () => {
-  //   console.log('버튼 클릭');
-  //   console.log('Memo saved:', memoContent);
-  // };
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setUploadedImage(file);
+      setImagePreview(URL.createObjectURL(file)); // Display preview
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setUploadedImage(null);
+    setImagePreview('');
+  };
+
+  const handleComplete = async () => {
+    const studyData = {
+      title,
+      content: memoContent,
+      memberId,
+      category: selectedCategory,
+      deadline: selectedDeadline?.toISOString() || '',
+      studyTime: selectedStudyDate?.toISOString() || '',
+      finish: false,
+      region: selectedRegion,
+      img: uploadedImage ? await getBase64(uploadedImage) : '',
+    };
+
+    console.log('Sending Study Data:', studyData);
+
+    try {
+      const response = await PostStudies(studyData);
+      console.log('Post Response:', response);
+    } catch (error) {
+      console.error('Error posting study:', error);
+    }
+  };
+
+  const getBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
 
   return (
     <PageContainer>
       <Header>
-        <BackButton>&lt;</BackButton>
+        <Link to="/studylist">
+          <BackButton>&lt;</BackButton>
+        </Link>
         <HeaderTitle>스터디 모집</HeaderTitle>
-        <CompleteButton>완료</CompleteButton>
+        <Link to="/studylist">
+          <CompleteButton onClick={handleComplete}>완료</CompleteButton>
+        </Link>
       </Header>
       <ContentContainer>
         <Imgdiv>
-          <Img src="https://via.placeholder.com/80" alt="대표 이미지" />
+          {imagePreview ? (
+            <ImgPreview>
+              <Img src={imagePreview} alt="미리보기 이미지" />
+              <RemoveButton onClick={handleRemoveImage}>삭제</RemoveButton>
+            </ImgPreview>
+          ) : (
+            <ImgUpload>
+              <label htmlFor="imageUpload">이미지 업로드</label>
+              <input
+                id="imageUpload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: 'none' }}
+              />
+            </ImgUpload>
+          )}
         </Imgdiv>
         <FormSection>
           <FormItem>
@@ -115,9 +188,9 @@ const App: React.FC = () => {
             <Label>모집 마감일</Label>
             <DatePicker
               shouldCloseOnSelect
-              selected={selectedDate}
-              onChange={(date: Date | null) => setSelectedDate(date)}
-              dateFormat="yyyy.MM.dd"
+              selected={selectedDeadline}
+              onChange={(date: Date | null) => setSelectedDeadline(date)}
+              dateFormat="yyyy-MM-dd"
               placeholderText="날짜를 선택해주세요"
             />
           </FormItem>
@@ -125,9 +198,9 @@ const App: React.FC = () => {
             <Label>스터디 진행일</Label>
             <DatePicker
               shouldCloseOnSelect
-              selected={selectedDate}
-              onChange={(date: Date | null) => setSelectedDate(date)}
-              dateFormat="yyyy.MM.dd"
+              selected={selectedStudyDate}
+              onChange={(date: Date | null) => setSelectedStudyDate(date)}
+              dateFormat="yyyy-MM-dd"
               placeholderText="날짜를 선택해주세요"
             />
           </FormItem>
@@ -155,6 +228,8 @@ const App: React.FC = () => {
             <Contenttitle
               type="text"
               placeholder="스터디 제목을 입력해주세요."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <EditorContainer ref={quillRef}></EditorContainer>
             {/* <button onClick={handleSaveMemo}>Save Memo</button> */}
@@ -223,12 +298,47 @@ const Imgdiv = styled.div`
   width: 100%;
 `;
 
+const ImgPreview = styled.div`
+  display: flex;
+  align-items: end;
+`;
+
+const ImgUpload = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  width: 98px;
+  height: 98px;
+  background-color: #f5f5fa;
+  border-radius: 8px;
+`;
+
 const Img = styled.img`
   width: 98px;
   height: 98px;
+  object-fit: cover;
   border-radius: 8px;
-  background: var(--gray-scale-gray-100, #f5f5fa);
 `;
+
+const RemoveButton = styled.button`
+  margin-top: 10px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+// const Img = styled.img`
+//   width: 98px;
+//   height: 98px;
+//   border-radius: 8px;
+//   background: var(--gray-scale-gray-100, #f5f5fa);
+// `;
 
 const FormSection = styled.div`
   display: flex;
