@@ -3,20 +3,30 @@ import Input from '../../shared/ui/Input';
 import React, { useState } from 'react';
 import Button from '../../shared/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../api/axiosInstance';
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const [idValue, setIdValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {
-      id: idValue,
+      name: idValue,
       password: passwordValue,
     };
     console.log(formData);
+    navigate('/studylist');
+    // try {
+    //   const response = await axiosInstance.post('/member/login', formData);
+    //   console.log('로그인 성공:', response.data);
+    //   navigate('/studylist');
+    // } catch (error) {
+    //   console.error('로그인 요청 오류:', error);
+    //   alert('로그인 요청 중 오류가 발생했습니다.');
+    // }
   };
 
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {

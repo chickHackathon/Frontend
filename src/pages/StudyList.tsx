@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+
 import { calculateDDay, formatStudyTime } from '../utils/avatarUtils';
 import { FetchStudies } from '../api/studyListApi';
 import dummyStudies, { StudyItemProps } from '../data/dummyStudies';
 import { Link } from 'react-router-dom';
+
+import TopBar from '../shared/ui/TopBar';
+
+interface StudyItemProps {
+  name: string;
+  category: string;
+  image: string;
+  participants: number;
+  location: string;
+  date: string;
+  end: string;
+}
+
 
 const StudyItem: React.FC<StudyItemProps> = ({
   title,
@@ -71,12 +85,9 @@ const App: React.FC = () => {
 
   return (
     <PageContainer>
-      <Header>
-        <span>카테고리</span>
-        <Link to="/my-page">
-          <ProfileButton>MY</ProfileButton>
-        </Link>
-      </Header>
+
+
+      <TopBar pageName="studylist">카테고리</TopBar>
       <SearchBar>
         <input
           type="text"
@@ -117,17 +128,6 @@ const PageContainer = styled.div`
   background: #ffffff;
   height: 100vh;
   overflow-y: auto;
-`;
-
-const Header = styled.div`
-  display: flex;
-  width: 375px;
-  height: 44px;
-  padding: 10px 0;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-  position: relative;
 `;
 
 const SearchBar = styled.div`
