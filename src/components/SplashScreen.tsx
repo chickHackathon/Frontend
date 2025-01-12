@@ -28,12 +28,7 @@ const SplashText = styled.h1`
 `;
 
 const SplashScreen: React.FC = () => {
-  return (
-    <SplashContainer>
-      <SplashText>삐약이즈</SplashText>
-      <img src={tempLogo} alt={'react logo test10'} />
-    </SplashContainer>
-  );
+  return <SplashContainer></SplashContainer>;
 };
 
 export default SplashScreen;

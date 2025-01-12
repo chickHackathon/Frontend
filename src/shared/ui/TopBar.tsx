@@ -50,6 +50,7 @@ const TopBarDiv = styled.div`
   z-index: 1111;
   background-color: #fff;
   top: 0;
+  left: 0;
 `;
 
 const TopBarP = styled.p`

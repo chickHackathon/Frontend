@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import TopBar from '../shared/ui/TopBar';
 
 interface StudyItemProps {
   name: string;
@@ -93,9 +94,7 @@ const App: React.FC = () => {
 
   return (
     <PageContainer>
-      <Header>
-        <span>카테고리</span>
-      </Header>
+      <TopBar pageName="studylist">카테고리</TopBar>
       <SearchBar>
         <input type="text" placeholder="어떤 스터디를 찾으세요?" />
       </SearchBar>
@@ -128,16 +127,7 @@ const PageContainer = styled.div`
   background: #ffffff;
   height: 100vh;
   overflow-y: auto;
-`;
-
-const Header = styled.div`
-  display: flex;
-  width: 375px;
-  height: 44px;
-  padding: 10px 0;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
+  scrollbar-width: none;
 `;
 
 const SearchBar = styled.div`
