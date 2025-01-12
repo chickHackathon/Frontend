@@ -19,19 +19,19 @@ export const DetailTopArea = styled.div`
  justify-content: center;
 `;
 
-export const BackgroundImageFrame = styled.div<{ imageUrl: string }>`
+export const BackgroundImageFrame = styled.div`
  position: absolute;
  top: 0;
  width: 100%;
  height: 167px;
  flex-shrink: 0;
-  background: url(${props => props.imageUrl}) lightgray 50% / cover no-repeat;
+  background: lightgray 50% / cover no-repeat;
 `;
 
 export const DetailInfoWrap = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
   align-self: stretch;
  z-index: 111;
@@ -92,9 +92,9 @@ export const UserWrap = styled.div`
     gap: 8px;
 `;
 
-export const UserImage = styled.img`
-    width: 28px;
-    height: 28px;
+export const UserImage = styled.div`
+     width: 28px;
+     height: 28px;
     border-radius: 28px;
     background: lightgray 50% / cover no-repeat, #D9D9D9;
 `;

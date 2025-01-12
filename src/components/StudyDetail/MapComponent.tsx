@@ -1,5 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { middlePoint, locations } from '../../data/locationsData';
+import {
+  BookerFrame,
+  BookerSubTitle,
+  BookerTitle,
+  CafeList,
+  CafeListItem,
+  CafeName,
+  CafeAddress,
+  CafePhone,
+} from '../../styled/studyDetail/BookerListStyled';
+import Icon from '../../shared/ui/Icon';
 
 declare global {
   interface Window {
@@ -7,7 +18,8 @@ declare global {
   }
 }
 
-const MapComponent: React.FC<{ setCafes: (cafes: any[]) => void }> = ({ setCafes }) => {
+const MapComponent: React.FC = () => {
+  const [cafes, setCafes] = useState<any[]>([]);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -29,12 +41,12 @@ const MapComponent: React.FC<{ setCafes: (cafes: any[]) => void }> = ({ setCafes
           const bounds = new window.kakao.maps.LatLngBounds();
 
           const createCustomMarker = (
-              position: any,
-              title: string,
-              iconUrl: string,
-              toggleInfoWindow: () => void
+            position: any,
+            title: string,
+            iconUrl: string,
+            toggleInfoWindow: () => void
           ) => {
-            const imageSize = new window.kakao.maps.Size(40, 40); // 마커 이미지 크기
+            const imageSize = new window.kakao.maps.Size(40, 40);
             const markerImage = new window.kakao.maps.MarkerImage(iconUrl, imageSize);
 
             const marker = new window.kakao.maps.Marker({
@@ -56,17 +68,17 @@ const MapComponent: React.FC<{ setCafes: (cafes: any[]) => void }> = ({ setCafes
           let middleInfoWindowVisible = false;
 
           const middleMarker = createCustomMarker(
-              middlePosition,
-              middlePoint.title,
-              'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-              () => {
-                if (middleInfoWindowVisible) {
-                  middleInfoWindow.close();
-                } else {
-                  middleInfoWindow.open(map, middleMarker);
-                }
-                middleInfoWindowVisible = !middleInfoWindowVisible;
+            middlePosition,
+            middlePoint.title,
+            'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+            () => {
+              if (middleInfoWindowVisible) {
+                middleInfoWindow.close();
+              } else {
+                middleInfoWindow.open(map, middleMarker);
               }
+              middleInfoWindowVisible = !middleInfoWindowVisible;
+            }
           );
           middleMarker.setMap(map);
           bounds.extend(middlePosition);
@@ -79,17 +91,17 @@ const MapComponent: React.FC<{ setCafes: (cafes: any[]) => void }> = ({ setCafes
             let infoWindowVisible = false;
 
             const marker = createCustomMarker(
-                position,
-                location.title,
-                'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-                () => {
-                  if (infoWindowVisible) {
-                    infoWindow.close();
-                  } else {
-                    infoWindow.open(map, marker);
-                  }
-                  infoWindowVisible = !infoWindowVisible;
+              position,
+              location.title,
+              'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+              () => {
+                if (infoWindowVisible) {
+                  infoWindow.close();
+                } else {
+                  infoWindow.open(map, marker);
                 }
+                infoWindowVisible = !infoWindowVisible;
+              }
             );
             marker.setMap(map);
             bounds.extend(position);
@@ -121,30 +133,45 @@ const MapComponent: React.FC<{ setCafes: (cafes: any[]) => void }> = ({ setCafes
 
           const ps = new window.kakao.maps.services.Places();
           ps.keywordSearch(
-              '카페',
-              (data: any[], status: string) => {
-                if (status === window.kakao.maps.services.Status.OK) {
-                  setCafes(data);
-                } else {
-                  console.error('검색 실패:', status);
-                }
-              },
-              {
-                location: new window.kakao.maps.LatLng(middlePoint.lat, middlePoint.lng),
-                radius: 1000,
+            '카페',
+            (data: any[], status: string) => {
+              if (status === window.kakao.maps.services.Status.OK) {
+                setCafes(data);
+              } else {
+                console.error('검색 실패:', status);
               }
+            },
+            {
+              location: new window.kakao.maps.LatLng(middlePoint.lat, middlePoint.lng),
+              radius: 1000,
+            }
           );
         }
       });
     };
     document.head.appendChild(script);
-  }, [setCafes]);
+  }, []);
 
   return (
+    <BookerFrame>
       <div>
-        <h1>중간 지점 기준 카페 목록</h1>
-        <div id="map" style={{ width: '100%', height: '500px' }}></div>
+        <BookerSubTitle>위치 정보</BookerSubTitle>
+        <BookerTitle>최적의 장소를 추천해드릴께요</BookerTitle>
       </div>
+      <div id="map" style={{ width: '100%', height: '500px' }}></div>
+      <CafeList>
+        {cafes.slice(0, 3).map((cafe, index) => (
+          <CafeListItem key={index}>
+            <Icon height={"32px"} path={`marker`+ index} width={"32px"}></Icon>
+            <div>
+              <CafeName>{cafe.place_name}</CafeName>
+              <CafeAddress>{cafe.address_name}</CafeAddress>
+              <CafePhone>{cafe.phone || '전화번호 없음'}</CafePhone>
+            </div>
+          </CafeListItem>
+        ))}
+      </CafeList>
+    </BookerFrame>
   );
 };
 

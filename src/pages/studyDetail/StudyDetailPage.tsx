@@ -3,7 +3,7 @@ import StoreListComponent from '../../components/StudyDetail/StoreListComponent'
 import { useState } from 'react';
 import TopBar from '../../shared/ui/TopBar';
 import StudyDetailsComponent from '../../components/StudyDetail/StudyDetailsComponent';
-import BookerList from '../../components/StudyDetail/BookerList';
+import BookerListComponent from '../../components/StudyDetail/BookerListComponent';
 import Button from '../../shared/ui/Button';
 import {
   ButtonWrap,
@@ -16,11 +16,10 @@ export default function StudyDetailPage() {
     <DetailFrame>
       <TopBar pageName="studydetail">스터디 내역</TopBar>
       <StudyDetailsComponent
-        imageUrl="백엔드에서_받은_이미지_URL"
-        avatarNum={1}
+        avatarNum={2}
       />
-      <BookerList />
-      <MapComponent setCafes={setCafes} />
+      <BookerListComponent  avatarNum={1}/>
+      <MapComponent />
       <StoreListComponent cafes={cafes} />
       <ButtonWrap>
         <Button>참가하기</Button>
