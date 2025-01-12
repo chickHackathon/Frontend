@@ -42,7 +42,6 @@ const RegisterForm = () => {
           .catch((error) =>
             console.error('Error fetching location data:', error)
           );
-        console.log(process.env.REACT_APP_KAKAO_REST_API_KEY);
       },
     }).open();
   };
