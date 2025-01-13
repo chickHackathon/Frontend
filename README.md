@@ -1,7 +1,11 @@
-# PPiYo 🐥
+# PPIYo 🐥
+![image](https://github.com/user-attachments/assets/3133d15e-701b-4119-aa4e-046ed19f197d)
+![image](https://github.com/user-attachments/assets/1d86d65b-8ae2-4453-a0b4-7c01880aa6f4)
+![image](https://github.com/user-attachments/assets/39e2c206-f07e-4a0e-a15b-bcebf58e2f7e)
 
-PPiYo는 스터디 모집과 장소 검색의 한계를 극복하기 위해 제작된 웹앱 서비스입니다.
-사용자는 간편하게 스터디 모집글을 작성하고, 참여자들의 중간 장소를 계산하여 모임에 적합한 위치를 추천받을 수 있습니다.
+
+**PPIYo는** 스터디 모집과 장소 검색의 한계를 극복하기 위해 제작된 **웹앱** 서비스입니다.<br>
+사용자는 간편하게 **스터디 모집**글을 작성하고, 참여자들의 **중간 장소를 계산**하여 모임에 적합한 장소를 추천받을 수 있습니다.<br>
 또한, 중간 지점 기준으로 1km 반경 내 필요한 장소를 검색할 수 있어, 효율적이고 편리한 스터디 환경을 제공합니다.
 
 <br>
