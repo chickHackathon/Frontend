@@ -32,23 +32,30 @@ PPiYo는 스터디 관리와 추천을 간편하게 제공하는 서비스입니
 ### 💻 백엔드 레포지토리
 [백엔드 GitHub 레포지토리](https://github.com/chickHackathon/Backend)
 
+### 🕹️ Swagger 링크
+[Swagger](http://43.200.98.168:8080/swagger-ui/index.html)
+
 ---
 
 ## 🔧 기술 스택
 
 - **프론트엔드:**  
-  <img src="https://img.shields.io/badge/React-20232A?style=flat&logo=React&logoColor=61DAFB&color=white" alt="React">  
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=TypeScript&logoColor=white&color=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/React-20232A?style=flat&logo=React&logoColor=61DAFB&color=white" alt="React">  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=TypeScript&logoColor=007ACC&color=white" alt="TypeScript">
 
 - **백엔드:**  
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=Node.js&logoColor=white&color=white" alt="Node.js">  
-  <img src="https://img.shields.io/badge/Express-000000?style=flat&logo=Express&logoColor=white&color=white" alt="Express">  
+  <img src="https://img.shields.io/badge/Springboot-339933?style=flat&logo=Springboot&logoColor=339933&color=white" alt="Springboot">
 
 - **데이터베이스:**  
-  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=MongoDB&logoColor=white&color=white" alt="MongoDB">
+  <img src="https://img.shields.io/badge/MariaDB-47A248?style=flat&logo=MariaDB&logoColor=47A248&color=white" alt="MariaDB">
+
+- **웹 서버:**  
+  <img src="https://img.shields.io/badge/NGINX-009639?style=flat&logo=NGINX&logoColor=009639&color=white" alt="NGINX">
+
+- **컨테이너 오케스트레이션:**  
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=2496ED&color=white" alt="Docker">
 
 - **디자인 툴:**  
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white&color=white" alt="Figma">
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=F24E1E&color=white" alt="Figma">
 
 
 ---
