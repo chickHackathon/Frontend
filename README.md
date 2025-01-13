@@ -65,8 +65,7 @@ PPiYo는 스터디 관리와 추천을 간편하게 제공하는 서비스입니
 ### 프론트엔드
 |                    **최승은**                      |                  **이주형**                   |                 **이다은**                  |
 |:------------------------------------------------:|:------------------------------------------:|:----------------------------------------:|
-| ![image](https://github.com/user-attachments/assets/771cb271-0c82-4ca5-9ff8-bd4ba3d3090c) | ![image](https://github.com/user-attachments/assets/679ad91d-eb73-451b-87ef-90b124f1e500) | ![image](https://github.com/user-attachments/assets/73f32592-4dcf-4a5d-84f4-b3dffdf995f1)|
-
+| ![image](https://github.com/user-attachments/assets/771cb271-0c82-4ca5-9ff8-bd4ba3d3090c) | ![image](https://github.com/user-attachments/assets/679ad91d-eb73-451b-87ef-90b124f1e500) | ![image](https://github.com/user-attachments/assets/73f32592-4dcf-4a5d-84f4-b3dffdf995f1) |
 | [@xeunnie](https://github.com/xeunnie) | [ @mangang0713](https://github.com/mangang0713) | [@daeun0726](https://github.com/daeun0726) |
 
 
