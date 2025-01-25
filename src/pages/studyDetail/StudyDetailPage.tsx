@@ -15,10 +15,8 @@ export default function StudyDetailPage() {
   return (
     <DetailFrame>
       <TopBar pageName="studydetail">스터디 내역</TopBar>
-      <StudyDetailsComponent
-        avatarNum={2}
-      />
-      <BookerListComponent  avatarNum={1}/>
+      <StudyDetailsComponent avatarNum={2} />
+      <BookerListComponent avatarNum={1} />
       <MapComponent />
       <StoreListComponent cafes={cafes} />
       <ButtonWrap>

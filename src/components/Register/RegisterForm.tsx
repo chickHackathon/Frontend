@@ -31,7 +31,6 @@ const RegisterForm = () => {
             },
           }
         )
-
           .then((response) => response.json())
           .then((result) => {
             if (result.documents.length > 0) {
