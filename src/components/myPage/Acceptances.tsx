@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Acceptance from './Acceptance';
 import { acceptanceMockDataList } from './mockData';
+import styled from 'styled-components';
 
 const Acceptances = () => {
   const [visibleAcceptanceData, setVisibleAcceptanceData] = useState(
@@ -43,10 +44,7 @@ const Acceptances = () => {
   }, [visibleAcceptanceData, isLoading]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{ overflowY: 'scroll', height: '100vh', paddingBottom: '50px' }}
-    >
+    <AcceptanceDiv ref={containerRef}>
       {visibleAcceptanceData.map((data, index) => (
         <Acceptance
           key={index}
@@ -58,8 +56,18 @@ const Acceptances = () => {
         />
       ))}
       <div id="sentinel" style={{ height: '10px' }} />
-    </div>
+    </AcceptanceDiv>
   );
 };
 
 export default Acceptances;
+
+const AcceptanceDiv = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 0 10px 50px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;

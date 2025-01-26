@@ -84,22 +84,23 @@ export default Manage;
 
 const ManageContainer = styled.div`
   display: flex;
-  width: 333px;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  padding: 10px;
 `;
 
 const PendingContainer = styled.div`
   display: flex;
-  width: 313px;
-  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
   border-radius: 8px;
   border: 1px solid #06f;
   background: #fff;
+  padding: 10px;
 
   /* 리스트 드롭쉐도우 */
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
@@ -186,11 +187,12 @@ const AcceptContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 9px;
+  width: 100%;
 `;
 
 const RejectButton = styled.div`
   display: flex;
-  width: 153px;
+  width: 100%;
   padding: 4px 0;
   justify-content: center;
   align-items: center;
@@ -210,7 +212,7 @@ const RejectButton = styled.div`
 
 const AcceptButton = styled.button`
   display: flex;
-  width: 153px;
+  width: 100%;
   padding: 4px 20px;
   justify-content: center;
   align-items: center;
@@ -231,7 +233,8 @@ const AcceptButton = styled.button`
 
 const FinishedContainer = styled.div`
   display: flex;
-  width: 313px;
+  width: 100%;
+  box-sizing: border-box;
   padding: 10px;
   flex-direction: column;
   align-items: flex-start;
