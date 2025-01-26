@@ -33,7 +33,7 @@ export default Input;
 
 const InputDiv = styled.div`
   display: flex;
-  width: 335px;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;

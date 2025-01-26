@@ -7,7 +7,7 @@ import 'quill-image-uploader/dist/quill.imageUploader.min.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { PostStudies } from '../../api/studyCreateApi';
-import { Link } from 'react-router-dom';
+import TopBar from '../../shared/ui/TopBar';
 
 Quill.register('modules/imageUploader', ImageUploader);
 
@@ -134,15 +134,7 @@ const App: React.FC = () => {
 
   return (
     <PageContainer>
-      <Header>
-        <Link to="/studylist">
-          <BackButton>&lt;</BackButton>
-        </Link>
-        <HeaderTitle>스터디 모집</HeaderTitle>
-        <Link to="/studylist">
-          <CompleteButton onClick={handleComplete}>완료</CompleteButton>
-        </Link>
-      </Header>
+      <TopBar pageName="studycreate">스터디 모집</TopBar>
       <ContentContainer>
         <Imgdiv>
           {imagePreview ? (
@@ -253,43 +245,12 @@ const PageContainer = styled.div`
   overflow-y: auto;
 `;
 
-const Header = styled.div`
-  display: flex;
-  height: 44px;
-  padding: 10px;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-`;
-
-const BackButton = styled.button`
-  border: none;
-  background: none;
-  font-size: 16px;
-  color: #000;
-`;
-
-const HeaderTitle = styled.h1`
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-`;
-
-const CompleteButton = styled.button`
-  font-size: 16px;
-  color: var(--blue-600, #06f);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-`;
-
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: space-between;
   gap: 12px;
-  margin: 0 30px;
+  margin: 60px 30px 0 30px;
 `;
 
 const Imgdiv = styled.div`
