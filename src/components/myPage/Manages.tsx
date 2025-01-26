@@ -64,4 +64,5 @@ const ManagesContainer = styled.div`
   height: 100vh;
   padding-bottom: 50px;
   margin: 0;
+  scrollbar-width: none;
 `;

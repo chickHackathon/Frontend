@@ -231,7 +231,7 @@ const AcceptButton = styled.button`
 
 const FinishedContainer = styled.div`
   display: flex;
-  width: 335px;
+  width: 313px;
   padding: 10px;
   flex-direction: column;
   align-items: flex-start;
