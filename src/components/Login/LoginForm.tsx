@@ -19,14 +19,14 @@ const LoginForm = () => {
     };
     console.log(formData);
     navigate('/studylist');
-    // try {
-    //   const response = await axiosInstance.post('/member/login', formData);
-    //   console.log('로그인 성공:', response.data);
-    //   navigate('/studylist');
-    // } catch (error) {
-    //   console.error('로그인 요청 오류:', error);
-    //   alert('로그인 요청 중 오류가 발생했습니다.');
-    // }
+    try {
+      const response = await axiosInstance.post('/member/login', formData);
+      console.log('로그인 성공:', response.data);
+      navigate('/studylist');
+    } catch (error) {
+      console.error('로그인 요청 오류:', error);
+      alert('로그인 요청 중 오류가 발생했습니다.');
+    }
   };
 
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {

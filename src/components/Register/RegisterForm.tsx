@@ -62,14 +62,14 @@ const RegisterForm = () => {
     console.log(formData);
     navigate('/');
 
-    // try {
-    //   const response = await axiosInstance.post('/member/signup', formData);
-    //   console.log('회원가입 성공:', response.data);
-    //   navigate('/login');
-    // } catch (error: any) {
-    //   console.error('회원가입 실패:', error.response?.data || error.message);
-    //   alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-    // }
+    try {
+      const response = await axiosInstance.post('/member/signup', formData);
+      console.log('회원가입 성공:', response.data);
+      navigate('/login');
+    } catch (error) {
+      console.error('회원가입 실패:', error.response?.data || error.message);
+      alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
   const isButtonDisabled =
