@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Manage from './Manage';
 import { manageMockDataList } from './mockData';
+import styled from 'styled-components';
 
 const Manages = () => {
   const [visibleManageData, setVisibleManageData] = useState(
@@ -43,16 +44,24 @@ const Manages = () => {
   }, [visibleManageData, isLoading]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{ overflowY: 'scroll', height: '100vh', paddingBottom: '50px' }}
-    >
+    <ManagesContainer ref={containerRef}>
       {visibleManageData.map((data, index) => (
         <Manage key={index} title={data.title} name={data.name} />
       ))}
       <div id="sentinel" style={{ height: '10px' }} />
-    </div>
+    </ManagesContainer>
   );
 };
 
 export default Manages;
+
+const ManagesContainer = styled.div`
+  display: flex;
+  width: 335px;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: scroll;
+  height: 100vh;
+  padding-bottom: 50px;
+  margin: 0;
+`;

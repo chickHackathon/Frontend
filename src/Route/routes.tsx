@@ -17,7 +17,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<TempPage />} />
       <Route path="/memo" element={<MemoPage />} />
       <Route path="/register" element={<Register />} />
-      {/* <Route path="/" element={<Login />} /> */}
+      <Route path="/" element={<Login />} />
       <Route path="/my-page" element={<MyPage />} />
       <Route path="/studycreate" element={<StudyCreate />} />
       <Route path="/studylist" element={<StudyList />} />

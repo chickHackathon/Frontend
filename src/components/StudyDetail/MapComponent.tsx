@@ -29,7 +29,10 @@ const MapComponent: React.FC = () => {
         const container = document.getElementById('map');
         if (container) {
           const options = {
-            center: new window.kakao.maps.LatLng(middlePoint.lat, middlePoint.lng),
+            center: new window.kakao.maps.LatLng(
+              middlePoint.lat,
+              middlePoint.lng
+            ),
             level: 6,
           };
 
@@ -47,7 +50,10 @@ const MapComponent: React.FC = () => {
             toggleInfoWindow: () => void
           ) => {
             const imageSize = new window.kakao.maps.Size(40, 40);
-            const markerImage = new window.kakao.maps.MarkerImage(iconUrl, imageSize);
+            const markerImage = new window.kakao.maps.MarkerImage(
+              iconUrl,
+              imageSize
+            );
 
             const marker = new window.kakao.maps.Marker({
               position: position,
@@ -61,7 +67,10 @@ const MapComponent: React.FC = () => {
             return marker;
           };
 
-          const middlePosition = new window.kakao.maps.LatLng(middlePoint.lat, middlePoint.lng);
+          const middlePosition = new window.kakao.maps.LatLng(
+            middlePoint.lat,
+            middlePoint.lng
+          );
           const middleInfoWindow = new window.kakao.maps.InfoWindow({
             content: `<div style="padding:5px; font-weight: bold;">${middlePoint.title}</div>`,
           });
@@ -84,7 +93,10 @@ const MapComponent: React.FC = () => {
           bounds.extend(middlePosition);
 
           locations.forEach((location) => {
-            const position = new window.kakao.maps.LatLng(location.lat, location.lng);
+            const position = new window.kakao.maps.LatLng(
+              location.lat,
+              location.lng
+            );
             const infoWindow = new window.kakao.maps.InfoWindow({
               content: `<div style="padding:5px;">${location.title}</div>`,
             });
@@ -142,7 +154,10 @@ const MapComponent: React.FC = () => {
               }
             },
             {
-              location: new window.kakao.maps.LatLng(middlePoint.lat, middlePoint.lng),
+              location: new window.kakao.maps.LatLng(
+                middlePoint.lat,
+                middlePoint.lng
+              ),
               radius: 1000,
             }
           );
@@ -162,7 +177,7 @@ const MapComponent: React.FC = () => {
       <CafeList>
         {cafes.slice(0, 3).map((cafe, index) => (
           <CafeListItem key={index}>
-            <Icon height={"32px"} path={`marker`+ index} width={"32px"}></Icon>
+            <Icon height={'32px'} path={`marker` + index} width={'32px'}></Icon>
             <div>
               <CafeName>{cafe.place_name}</CafeName>
               <CafeAddress>{cafe.address_name}</CafeAddress>

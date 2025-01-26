@@ -84,7 +84,7 @@ export default Manage;
 
 const ManageContainer = styled.div`
   display: flex;
-  width: 335px;
+  width: 333px;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
@@ -92,7 +92,7 @@ const ManageContainer = styled.div`
 
 const PendingContainer = styled.div`
   display: flex;
-  width: 315px;
+  width: 313px;
   padding: 10px;
   flex-direction: column;
   align-items: flex-start;
