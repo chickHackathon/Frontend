@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { calculateDDay, formatStudyTime } from '../utils/avatarUtils';
-import { FetchStudies } from '../api/studyListApi';
-import dummyStudies, { StudyItemProps } from '../data/dummyStudies';
+import { calculateDDay, formatStudyTime } from '../../utils/avatarUtils';
+import { FetchStudies } from '../../api/studyListApi';
+import dummyStudies, { StudyItemProps } from '../../data/dummyStudies';
 import { Link } from 'react-router-dom';
-import TopBar from '../shared/ui/TopBar';
+import TopBar from '../../shared/ui/TopBar';
 
 const StudyItem: React.FC<StudyItemProps> = ({
   title,
@@ -173,13 +173,19 @@ const StudyListContainer = styled.div`
   align-items: center;
   gap: 12px;
   margin-top: 24px;
+    a{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
 `;
 
 const StudyItemBlock = styled.div`
   display: flex;
   gap: 12px;
   padding: 10px;
-  width: 315px;
+  width: 100%;
+    box-sizing: border-box;
   border-radius: 8px;
   border: 1px solid #f5f5fa;
   background: #fff;
@@ -191,7 +197,7 @@ const Img = styled.img`
   width: 97px;
   height: 98px;
   border-radius: 8px;
-  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+  background: lightgray 50% / cover no-repeat;
 `;
 
 const Description = styled.div`
@@ -223,7 +229,7 @@ const End = styled.div`
 
 const FloatingButton = styled.button`
   position: fixed;
-  left: 307px;
+  right: 10px;
   bottom: 32px;
   width: 48px;
   height: 48px;
