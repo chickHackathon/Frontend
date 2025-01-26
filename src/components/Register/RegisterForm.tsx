@@ -114,10 +114,8 @@ const RegisterForm = () => {
               placeholder="주소를 검색해주세요"
               value={locationValue}
               readOnly
+              onClick={handleAddressSearch}
             />
-            <SearchButton type="button" onClick={handleAddressSearch}>
-              주소 찾기
-            </SearchButton>
           </div>
         </FormDiv>
         <MarginDiv></MarginDiv>
@@ -132,7 +130,7 @@ const RegisterForm = () => {
 export default RegisterForm;
 
 const RegisterFormDiv = styled.div`
-  width: 335px;
+  width: 100%;
   margin: 0;
   padding: 0;
 `;
@@ -150,18 +148,5 @@ const FormDiv = styled.div`
 const FormElement = styled.form`
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
-`;
-
-const SearchButton = styled.button`
-  background: #06f;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 8px;
-  cursor: pointer;
-  &:hover {
-    background: #005bb5;
-  }
+  padding: 20px;
 `;

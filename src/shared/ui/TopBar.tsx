@@ -41,7 +41,7 @@ export default TopBar;
 
 const TopBarDiv = styled.div`
   display: flex;
-  width: 375px;
+  width: 100%;
   height: 44px;
   align-items: center;
   justify-content: center;

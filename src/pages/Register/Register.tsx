@@ -15,7 +15,7 @@ const Register = () => {
 export default Register;
 
 const RegisterDiv = styled.div`
-  width: 375px;
+  width: 100%;
   height: 761px;
   margin: 0;
   padding: 0;
