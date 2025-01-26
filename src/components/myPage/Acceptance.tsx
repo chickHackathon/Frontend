@@ -53,11 +53,17 @@ export default Acceptance;
 
 const StudyContainer = styled.div`
   display: flex;
-  width: 335px;
   padding: 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid #f5f5fa;
+  background: #fff;
+
+  /* 리스트 드롭쉐도우 */
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
 `;
 
 const StudyDiv = styled.div`

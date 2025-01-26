@@ -417,3 +417,10 @@ const EditorContainer = styled.div`
 //   width: 100%;
 //   box-sizing: border-box;
 // `;
+
+/*
+  React-DatePicker 사용할 때 Input의 Onclick으로 불러오는 방식 사용해서
+  디자인 수정하기.
+  모잡 마감일은 Dropdown 아님!
+  참고로.. 다른 Dropdown에 Icon이 포함되어있지 않은 상태임임
+*/

@@ -57,11 +57,11 @@ export default Manages;
 
 const ManagesContainer = styled.div`
   display: flex;
-  width: 335px;
+  width: 100%;
   flex-direction: column;
   gap: 12px;
-  overflow-y: scroll;
+  box-sizing: border-box;
   height: 100vh;
-  padding-bottom: 50px;
+  padding-bottom: 0 10px 50px 10px;
   margin: 0;
 `;
