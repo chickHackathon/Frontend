@@ -8,7 +8,7 @@ import axiosInstance from '../../api/axiosInstance';
 const RegisterForm = () => {
   const navigate = useNavigate();
 
-  const [idValue, setIdValue] = useState('');
+  const [nameValue, setNameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [nicknameValue, setNicknameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
@@ -50,7 +50,7 @@ const RegisterForm = () => {
     e.preventDefault();
 
     const formData = {
-      id: idValue,
+      name: nameValue,
       password: passwordValue,
       nickname: nicknameValue,
       email: emailValue,
@@ -73,7 +73,7 @@ const RegisterForm = () => {
   };
 
   const isButtonDisabled =
-    !idValue ||
+    !nameValue ||
     !passwordValue ||
     !nicknameValue ||
     !emailValue ||
@@ -84,10 +84,16 @@ const RegisterForm = () => {
       <FormElement onSubmit={handleSubmit}>
         <FormDiv>
           <Input
-            title="아이디"
-            placeholder="아이디"
-            value={idValue}
-            onChange={(e) => setIdValue(e.target.value)}
+            title="이름"
+            placeholder="이름"
+            value={nameValue}
+            onChange={(e) => setNameValue(e.target.value)}
+          />
+          <Input
+            title="이메일"
+            placeholder="0000@000.com"
+            value={emailValue}
+            onChange={(e) => setEmailValue(e.target.value)}
           />
           <Input
             type="password"
@@ -101,12 +107,6 @@ const RegisterForm = () => {
             placeholder="삐약이"
             value={nicknameValue}
             onChange={(e) => setNicknameValue(e.target.value)}
-          />
-          <Input
-            title="이메일"
-            placeholder="0000@000.com"
-            value={emailValue}
-            onChange={(e) => setEmailValue(e.target.value)}
           />
           <div>
             <Input
