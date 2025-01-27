@@ -70,7 +70,7 @@ export default LoginForm;
 
 const LoginFormDiv = styled.div`
   display: flex;
-  width: 335px;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -79,7 +79,7 @@ const LoginFormDiv = styled.div`
 
 const Form = styled.form`
   display: flex;
-  width: 335px;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

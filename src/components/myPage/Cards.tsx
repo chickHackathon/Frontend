@@ -63,7 +63,9 @@ export default Cards;
 
 const CardsDiv = styled.div`
   display: flex;
-  width: 335px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
