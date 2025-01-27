@@ -63,7 +63,7 @@ const RegisterForm = () => {
     navigate('/');
 
     try {
-      const response = await axiosInstance.post('/member/signup', formData);
+      const response = await axiosInstance.post('/user/signup', formData);
       console.log('회원가입 성공:', response.data);
       navigate('/login');
     } catch (error: any) {
